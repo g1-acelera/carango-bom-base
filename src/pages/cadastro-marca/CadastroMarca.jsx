@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router';
 import useErros from '../../hooks/useErros';
 import MarcaService from '../../services/MarcaService';
 
+import {BotaoSalvar, BotaoCancelar} from '../../@material/Button'
+
 function CadastroMarca() {
     const [marca, setMarca] = useState("");
     const history = useHistory();
@@ -66,20 +68,22 @@ function CadastroMarca() {
                 margin="normal"
             />
 
-            <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={!possoEnviar()}>
-                {id ? 'Alterar' : 'Cadastrar'}
-            </Button>
+            <div className='buttonContainer'>
+                <BotaoSalvar
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={!possoEnviar()}>
+                    {id ? 'Alterar' : 'Cadastrar'}
+                </BotaoSalvar>
 
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={cancelar}>
-                Cancelar
-            </Button>
+                <BotaoCancelar
+                    variant="contained"
+                    color="secondary"
+                    onClick={cancelar}>
+                    Cancelar
+                </BotaoCancelar>
+            </div>
         </form>
     );
 }
