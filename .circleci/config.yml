@@ -30,9 +30,9 @@ jobs:
             - package.json
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
-      - run:
-          name: Run tests
-          command: npm run test
+#      - run:
+#          name: Run tests
+#          command: npm run test
 
       - run:
           name: Build application
