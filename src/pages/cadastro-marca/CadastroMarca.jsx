@@ -25,7 +25,6 @@ function CadastroMarca() {
         history.goBack();
     }
 
-    // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
             MarcaService.consultar(id)
