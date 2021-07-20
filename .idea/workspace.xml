@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69445acc-1f14-4379-aa4d-c21782a9d0fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.css" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/@material/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/@material/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cadastro-marca/CadastroMarca.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cadastro-marca/CadastroMarca.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/listagem-marca/ListagemMarca.test.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/listagem-marca/ListagemMarcas.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/listagem-marca/ListagemMarcas.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1626787000129</updated>
       <workItem from="1626787005762" duration="10707000" />
-      <workItem from="1626804819583" duration="259000" />
+      <workItem from="1626804819583" duration="3758000" />
     </task>
     <servers />
   </component>
