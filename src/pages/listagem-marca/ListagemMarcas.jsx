@@ -1,33 +1,22 @@
-import { Button, Fab, makeStyles } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
-import React, { useEffect, useState } from 'react';
+import { DataGrid } from '@material-ui/data-grid';
+import { Button, Fab} from '@material-ui/core';
+
 import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
 import MarcaService from '../../services/MarcaService';
+
+import {fabStyles} from '../../@material/Button';
 
 const colunas = [
     { field: 'nome', headerName: 'Marca', width: 200 }
 ];
 
-const useStyles = makeStyles(() => ({
-    fab: {
-        position: 'absolute',
-        bottom: '100px',
-        right: '100px',
-    },
-    actionsToolbar: {
-        float: 'right'
-    },
-    actions: {
-        top: '10px',
-        marginLeft: '10px',
-    }
-}));
-
 function ListagemMarcas() {
     const [marcas, setMarcas] = useState([]);
     const [marcaSelecionada, setMarcaSelecionada] = useState();
-    const classes = useStyles();
+    const classes = fabStyles();
     const history = useHistory();
 
     function alterar() {
