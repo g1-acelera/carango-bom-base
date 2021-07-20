@@ -1,0 +1,53 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+  heroku: circleci/heroku@1.2.6
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:15.1
+
+    working_directory: ~/build
+
+    steps:
+      - checkout
+      - node/install-packages
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Install dependecies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+            - dist
+            - package.json
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+
+      - run:
+          name: Run tests
+          command: npm run test
+
+      - run:
+          name: Build application
+          command: npm run build
+
+workflows:
+  version: 2
+
+  -build:
+    jobs:
+      - build-and-test
+      - heroku/deploy-via-git:
+          requires:
+            - build-and-test
+
+filters:
+  branches:
+    only: master
