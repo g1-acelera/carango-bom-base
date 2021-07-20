@@ -1,16 +1,13 @@
 import { Button, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import useErros from '../hooks/useErros';
-import MarcaService from '../services/MarcaService';
+import useErros from '../../hooks/useErros';
+import MarcaService from '../../services/MarcaService';
 
 function CadastroMarca() {
-
     const [marca, setMarca] = useState("");
-
     const history = useHistory();
-
-    const { id } = useParams();
+    const {id} = useParams();
 
     const validacoes = {
         marca: dado => {
@@ -37,7 +34,7 @@ function CadastroMarca() {
     }, [id]); // eslint-disable-line
 
     return (
-        <form onSubmit={(event) => {
+        <form data-testid="form" onSubmit={(event) => {
             event.preventDefault();
             if (possoEnviar()) {
                 if (id) {
