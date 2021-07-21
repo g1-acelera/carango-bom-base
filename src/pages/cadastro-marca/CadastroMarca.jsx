@@ -1,13 +1,15 @@
 import { Button, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import useErros from '../../hooks/useErros';
+import useErros from '../../shared/hooks/useErros';
 import MarcaService from '../../services/MarcaService';
 
 import {BotaoSalvar, BotaoCancelar} from '../../@material/Button'
+import Marca from "./Marca";
+import useForm from "../../shared/hooks/useForm";
 
 function CadastroMarca() {
-    const [marca, setMarca] = useState("");
+    const {atualizaValor, valores} = useForm();
     const history = useHistory();
     const {id} = useParams();
 
@@ -29,43 +31,42 @@ function CadastroMarca() {
 
     useEffect(() => {
         if (id) {
-            MarcaService.consultar(id)
-                .then(m => setMarca(m.nome));
+            // MarcaService.consultar(id)
+            //     .then(m => setMarca(m.nome));
         }
     }, [id]); // eslint-disable-line
 
     return (
         <form data-testid="form" onSubmit={(event) => {
             event.preventDefault();
-            if (possoEnviar()) {
-                if (id) {
-                    MarcaService.alterar({ id, nome: marca })
-                        .then(res => {
-                            history.goBack();
-                        });
-                } else {
-                    MarcaService.cadastrar({ nome: marca })
-                        .then(res => {
-                            setMarca("");
-                            history.goBack();
-                        });
-                }
-            }
+            // if (possoEnviar()) {
+            //     if (id) {
+            //         MarcaService.alterar({ id, nome: marca })
+            //             .then(res => {
+            //                 history.goBack();
+            //             });
+            //     } else {
+            //         MarcaService.cadastrar({ nome: marca })
+            //             .then(res => {
+            //                 setMarca("");
+            //                 history.goBack();
+            //             });
+            //     }
+            // }
         }}>
             <TextField
-                value={marca}
-                onChange={evt => setMarca(evt.target.value)}
-                onBlur={validarCampos}
-                helperText={erros.marca.texto}
-                error={!erros.marca.valido}
-                name="marca"
-                id="marca"
+                value={valores.nome}
+                onChange={atualizaValor}
+                // onBlur={validarCampos}
+                // helperText={erros.marca.texto}
+                // error={!erros.marca.valido}
+                name={Marca.modelo().nome}
+                id={Marca.modelo().nome}
                 label="Marca"
                 type="text"
                 variant="outlined"
                 fullWidth
                 required
-                margin="normal"
             />
 
             <div className='buttonContainer'>
