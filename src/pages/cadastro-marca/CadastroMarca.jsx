@@ -1,12 +1,11 @@
-import { Button, TextField } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
-import useErros from '../../shared/hooks/useErros';
-import MarcaService from '../../services/MarcaService';
 
 import {BotaoSalvar, BotaoCancelar} from '../../@material/Button'
 import Marca from "./Marca";
 import useForm from "../../shared/hooks/useForm";
+
+import CampoDeTexto from '../../shared/components/CampoDeTexto'
 
 function CadastroMarca() {
     const {atualizaValor, valores} = useForm();
@@ -22,8 +21,6 @@ function CadastroMarca() {
             }
         }
     }
-
-    const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
     function cancelar() {
         history.goBack();
@@ -54,19 +51,16 @@ function CadastroMarca() {
             //     }
             // }
         }}>
-            <TextField
-                value={valores.nome}
-                onChange={atualizaValor}
-                // onBlur={validarCampos}
-                // helperText={erros.marca.texto}
-                // error={!erros.marca.valido}
-                name={Marca.modelo().nome}
+
+            <CampoDeTexto
                 id={Marca.modelo().nome}
+                name={Marca.modelo().nome}
                 label="Marca"
-                type="text"
-                variant="outlined"
-                fullWidth
-                required
+                value={valores.nome}
+                error={Marca.ehValido}
+                required={true}
+                onChange={atualizaValor}
+                onBlur={Marca.validacoesNome(valores.nome)}
             />
 
             <div className='buttonContainer'>
@@ -74,7 +68,8 @@ function CadastroMarca() {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    disabled={!possoEnviar()}>
+                    // disabled={!possoEnviar()}
+                    >
                     {id ? 'Alterar' : 'Cadastrar'}
                 </BotaoSalvar>
 
