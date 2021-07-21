@@ -41,7 +41,9 @@ function ListagemMarcas() {
     return (
         <div style={{height: 300, width: '100%'}}>
             <DataGrid rows={marcas} columns={colunas}
-                      onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
+                      onCellClick={gridSelection => {
+                          setMarcaSelecionada(gridSelection.row)
+                      }}
             />
 
             <div className={classes.actionsToolbar}>
