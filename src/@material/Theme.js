@@ -1,6 +1,6 @@
 import blue from '@material-ui/core/colors/blue';
 import {ptBR} from '@material-ui/core/locale';
-import {createTheme, makeStyles} from '@material-ui/core';
+import {createMuiTheme, makeStyles} from '@material-ui/core';
 
 export const defaultStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +18,7 @@ export const defaultStyles = makeStyles((theme) => ({
     },
 }));
 
-export const muiTheme = createTheme({
+export const muiTheme = createMuiTheme({
     palette: {
         primary: {
             main: blue[900],
