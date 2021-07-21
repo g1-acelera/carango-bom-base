@@ -22,7 +22,7 @@ function CadastroMarca() {
             MarcaService.consultar(id)
                 .then(dados => setValores(dados));
         }
-    }, [id]);
+    }, [id, setValores]);
 
     return (
         <form data-testid="form" onSubmit={(event) => {

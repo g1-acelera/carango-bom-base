@@ -1,6 +1,7 @@
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
+import {pink} from "@material-ui/core/colors";
 
 export const fabStyles = makeStyles(() => ({
     fab: {
@@ -19,17 +20,14 @@ export const fabStyles = makeStyles(() => ({
 
 export const BotaoSalvar = withStyles ({
     root: {
-        backgroundColor: 'white',
+        backgroundColor: pink[400],
         borderRadius: '20px',
-        border: '1px solid green',
-        color: 'green',
+        color: 'white',
+        boxShadow: '0px 4px 4px rgba(236, 64, 122, 0.4)',
         '&:hover': {
-            backgroundColor: 'lightgray',
+            backgroundColor: '',
             borderColor: 'none',
             boxShadow: 'none',
-        },
-        '&:disabled': {
-            border: '1px solid lightgray'
         },
     },
 })(Button);
@@ -47,5 +45,3 @@ export const BotaoCancelar = withStyles ({
         },
     },
 })(Button);
-
-// export 
