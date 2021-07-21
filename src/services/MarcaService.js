@@ -16,7 +16,7 @@ const MarcaService = {
   },
 
   consultar(id) {
-    return fetch(`${API}/marcas${id}`).then(r => r.json());
+    return fetch(`${API}/marcas/${id}`).then(r => r.json());
   },
 
   listar() {
