@@ -15,20 +15,9 @@ jobs:
       - checkout
       - node/install-packages
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
       - run:
           name: Install dependecies
           command: npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-            - dist
-            - package.json
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
           name: Run tests
