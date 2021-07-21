@@ -13,6 +13,7 @@ function CampoDeTexto({
     return (
         <>
             {<TextField
+                data-testid="text-field"
                 id={id}
                 type="text"
                 name={name}
