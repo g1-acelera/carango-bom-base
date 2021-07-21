@@ -1,7 +1,6 @@
 import pink from '@material-ui/core/colors/pink';
 import {ptBR} from '@material-ui/core/locale';
-import {makeStyles} from '@material-ui/core';
-import {createTheme} from "@material-ui/core/styles";
+import {makeStyles,createTheme} from '@material-ui/core';
 import {red} from "@material-ui/core/colors";
 
 export const defaultStyles = makeStyles((theme) => ({
