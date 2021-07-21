@@ -5,7 +5,7 @@ import {BotaoSalvar, BotaoCancelar} from '../../@material/Button'
 import Marca from "./Marca";
 import useForm from "../../shared/hooks/useForm";
 
-import CampoDeTexto from '../../shared/components/CampoDeTexto'
+import CampoDeTexto from '../../shared/components/campo-de-texto/CampoDeTexto'
 import MarcaService from "../../services/MarcaService";
 
 function CadastroMarca() {
