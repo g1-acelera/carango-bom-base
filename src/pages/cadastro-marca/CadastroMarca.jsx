@@ -9,7 +9,7 @@ import CampoDeTexto from '../../shared/components/CampoDeTexto'
 import MarcaService from "../../services/MarcaService";
 
 function CadastroMarca() {
-    const {atualizaValor, valores, setValores} = useForm();
+    const {atualizaValor, valores, setValores} = useForm(Marca.initialValues());
     const history = useHistory();
     const {id} = useParams();
 
@@ -22,7 +22,7 @@ function CadastroMarca() {
             MarcaService.consultar(id)
                 .then(dados => setValores(dados));
         }
-    }, [id]); // eslint-disable-line
+    }, [id]);
 
     return (
         <form data-testid="form" onSubmit={(event) => {
