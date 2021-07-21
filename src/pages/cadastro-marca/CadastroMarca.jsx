@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import { useHistory, useParams } from 'react-router';
 
 import {BotaoSalvar, BotaoCancelar} from '../../@material/Button'
@@ -6,21 +6,12 @@ import Marca from "./Marca";
 import useForm from "../../shared/hooks/useForm";
 
 import CampoDeTexto from '../../shared/components/CampoDeTexto'
+import MarcaService from "../../services/MarcaService";
 
 function CadastroMarca() {
-    const {atualizaValor, valores} = useForm();
+    const {atualizaValor, valores, setValores} = useForm();
     const history = useHistory();
     const {id} = useParams();
-
-    const validacoes = {
-        marca: dado => {
-            if (dado && dado.length >= 3) {
-                return { valido: true };
-            } else {
-                return { valido: false, texto: "Marca deve ter ao menos 3 letras." }
-            }
-        }
-    }
 
     function cancelar() {
         history.goBack();
@@ -28,8 +19,8 @@ function CadastroMarca() {
 
     useEffect(() => {
         if (id) {
-            // MarcaService.consultar(id)
-            //     .then(m => setMarca(m.nome));
+            MarcaService.consultar(id)
+                .then(dados => setValores(dados));
         }
     }, [id]); // eslint-disable-line
 
@@ -51,24 +42,21 @@ function CadastroMarca() {
             //     }
             // }
         }}>
-
             <CampoDeTexto
-                id={Marca.modelo().nome}
-                name={Marca.modelo().nome}
+                id="marca-nome"
+                name="nome"
                 label="Marca"
                 value={valores.nome}
-                error={Marca.ehValido}
+                error={Marca.validacoesNome(valores.nome)}
                 required={true}
                 onChange={atualizaValor}
-                onBlur={Marca.validacoesNome(valores.nome)}
             />
-
             <div className='buttonContainer'>
                 <BotaoSalvar
                     variant="contained"
                     color="primary"
                     type="submit"
-                    // disabled={!possoEnviar()}
+                    disabled={Marca.ehModeloValido(valores)}
                     >
                     {id ? 'Alterar' : 'Cadastrar'}
                 </BotaoSalvar>

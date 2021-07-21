@@ -4,13 +4,12 @@ const useForm = () => {
     const [valores, setValores] = useState({});
     function atualizaValor(event) {
         const {name, value} = event.target;
-
         setValores({
             ...valores,
             [name]: value
         });
     }
-    return {atualizaValor, valores};
+    return {atualizaValor, valores, setValores};
 };
 
 export default useForm;

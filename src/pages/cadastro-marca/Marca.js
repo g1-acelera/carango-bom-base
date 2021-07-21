@@ -2,17 +2,14 @@ import validaTamanhoMinimo from '../../shared/validators/tamanho-minimo/tamanho-
 import validaObrigatoriedade from '../../shared/validators/obrigatorio/obrigatorio'
 
 class Marca {
-    static ehValido = false
-
-    static modelo() {
-        return {
-            nome: '',
-        }
-    }
     static validacoesNome(valorDoCampo) {
-        const validacao = validaTamanhoMinimo(valorDoCampo, 3) == ""|| validaObrigatoriedade(valorDoCampo) == ""
-        this.ehValido = !validacao
-        return validacao
+        const tamanhoMinimo = validaTamanhoMinimo(valorDoCampo, 3)
+        const obrigatorio = validaObrigatoriedade(valorDoCampo)
+        return tamanhoMinimo ? tamanhoMinimo : obrigatorio
+    }
+
+    static ehModeloValido(valores) {
+        return !!this.validacoesNome(valores.nome);
     }
 }
 
