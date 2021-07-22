@@ -23,28 +23,26 @@ const setup = (value) => {
 
 describe("Teste do campo de texto", () => {
     it("Deve renderizar o componente", () => {
-        const { wrapper, props } = setup("foo");
+        const { wrapper } = setup("foo");
         expect(wrapper.exists()).toBeTruthy();
     });
     it("Deve possuir texto digitado", () => {
-        const { wrapper, props } = setup("foo");
+        const { wrapper } = setup("foo");
         expect(wrapper.find(TextField).props().value).toEqual("foo");
     });
     it("Deve exibir mensagem de campo obrigatorio quando vazio", () => {
-        const { wrapper, props } = setup("");
-        const textField = wrapper.find(TextField);
+        const { wrapper } = setup("");
         expect(wrapper.find(TextField).props().helperText).toEqual("Campo obrigatório");
         expect(wrapper.find(TextField).props().error).toBeTruthy();
     });
     it("Deve exibir mensagem de tamanho minimo quando o texto for menor que 3 caracteres", () => {
-        const { wrapper, props } = setup("te");
+        const { wrapper } = setup("te");
         const textField = wrapper.find(TextField);
         expect(wrapper.find(TextField).props().helperText).toEqual("Deve ter ao menos 3 letras");
         expect(wrapper.find(TextField).props().error).toBeTruthy();
     });
     it("Não deve exibir nenhuma mensagem de erro quando o campo respeitar todas as regras", () => {
-        const { wrapper, props } = setup("test");
-        const textField = wrapper.find(TextField);
+        const { wrapper } = setup("test");
         expect(wrapper.find(TextField).props().helperText).toBeFalsy();
         expect(wrapper.find(TextField).props().error).toBeFalsy();
     });
