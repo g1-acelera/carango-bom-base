@@ -1,16 +1,10 @@
 import {BotaoCancelar, BotaoSalvar} from "../../../@material/Button";
-import React, {useEffect} from "react";
+import React from "react";
 import {useHistory, useParams} from "react-router";
 
-const BotaoDetalhes = ({consultarServico, dadosConsultados, salvarDesabilidato}) => {
+const BotaoDetalhes = ({salvarDesabilidato}) => {
     const {id} = useParams();
     const history = useHistory();
-
-    useEffect(() => {
-        if (!id) return;
-        consultarServico(id).then(dados => dadosConsultados(dados));
-
-    }, [id, dadosConsultados, consultarServico]);
 
     function cancelar() {
         history.goBack();

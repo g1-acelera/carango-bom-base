@@ -1,16 +1,27 @@
 import AddIcon from '@material-ui/icons/Add';
 import {DataGrid} from '@material-ui/data-grid';
-import {Button, Fab} from '@material-ui/core';
-
+import {Button, Fab, IconButton} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {useHistory} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
-
 import MarcaService from '../../services/MarcaService';
-
 import {fabStyles} from '../../@material/Button';
 
 const colunas = [
-    {field: 'nome', headerName: 'Marca', width: 200}
+    {field: "nome", headerName: "Marca"},
+    {
+        field: "",
+        headerName: "Editar",
+        sortable: false,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+            const onClick = () => {
+                console.log(params.row)
+            };
+
+            return <IconButton aria-label="delete" onClick={onClick}><DeleteIcon/></IconButton>
+        }
+    },
 ];
 
 function ListagemMarcas() {
@@ -39,8 +50,8 @@ function ListagemMarcas() {
     }
 
     return (
-        <div style={{height: 300, width: '100%'}}>
-            <DataGrid rows={marcas} columns={colunas}
+        <div>
+            <DataGrid style={{flexGrow: 1}} autoHeight={true} rows={marcas} columns={colunas}
                       onCellClick={gridSelection => {
                           setMarcaSelecionada(gridSelection.row)
                       }}

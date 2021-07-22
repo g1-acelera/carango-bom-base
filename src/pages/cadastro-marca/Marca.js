@@ -15,7 +15,7 @@ class Marca {
     }
 
     static ehModeloValido(valores) {
-        return !!this.validacoesNome(valores.nome);
+        return !!this.validacoesNome(valores?.nome);
     }
 }
 
