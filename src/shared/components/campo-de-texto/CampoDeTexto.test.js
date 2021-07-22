@@ -37,7 +37,6 @@ describe("Teste do campo de texto", () => {
     });
     it("Deve exibir mensagem de tamanho minimo quando o texto for menor que 3 caracteres", () => {
         const { wrapper } = setup("te");
-        const textField = wrapper.find(TextField);
         expect(wrapper.find(TextField).props().helperText).toEqual("Deve ter ao menos 3 letras");
         expect(wrapper.find(TextField).props().error).toBeTruthy();
     });
