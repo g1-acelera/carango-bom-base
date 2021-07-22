@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import Marca from "./Marca";
+import Marca from "../../shared/models/Marca";
 import useForm from "../../shared/hooks/useForm";
 import CampoDeTexto from '../../shared/components/campo-de-texto/CampoDeTexto'
 import MarcaService from "../../services/MarcaService";
