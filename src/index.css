@@ -1,5 +1,6 @@
 @import './theme/flex.css';
 @import './theme/cores.css';
+@import './theme/fonte.css';
 
 body {
   margin: 0;

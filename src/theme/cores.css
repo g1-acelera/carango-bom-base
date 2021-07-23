@@ -8,3 +8,7 @@
     --texto-primario: #424242;
     --azul600: #1E88E5;
 }
+
+.principal700-fg {
+    color: var(--principal700);
+}
