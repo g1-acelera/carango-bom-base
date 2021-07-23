@@ -1,6 +1,7 @@
-import blue from '@material-ui/core/colors/blue';
+import pink from '@material-ui/core/colors/pink';
 import {ptBR} from '@material-ui/core/locale';
-import {createMuiTheme, makeStyles} from '@material-ui/core';
+import {makeStyles,createTheme} from '@material-ui/core';
+import {red} from "@material-ui/core/colors";
 
 export const defaultStyles = makeStyles((theme) => ({
     root: {
@@ -18,10 +19,15 @@ export const defaultStyles = makeStyles((theme) => ({
     },
 }));
 
-export const muiTheme = createMuiTheme({
+export const muiTheme = createTheme({
     palette: {
         primary: {
-            main: blue[900],
+            main: pink[800],
+            error: red[500]
         }
+    },
+    typography: {
+        "fontFamily": `"Nunito", sans-serif;`,
+        "fontSize": 14,
     },
 }, ptBR);

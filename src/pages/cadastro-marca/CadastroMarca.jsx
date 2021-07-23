@@ -1,87 +1,40 @@
-import { Button, TextField } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
-import useErros from '../../hooks/useErros';
-import MarcaService from '../../services/MarcaService';
+import React, {useEffect} from 'react';
+
+import Marca from "../../shared/models/Marca";
+import useForm from "../../shared/hooks/useForm";
+import CampoDeTexto from '../../shared/components/campo-de-texto/CampoDeTexto'
+import MarcaService from "../../services/MarcaService";
+import BotaoDetalhes from "../../shared/components/botao-detalhes/BotaoDetalhes";
+import Formulario from "../../shared/components/formulario/Formulario";
+import useConsultaEntidade from "../../shared/hooks/useConsultaEntidade";
 
 function CadastroMarca() {
-    const [marca, setMarca] = useState("");
-    const history = useHistory();
-    const {id} = useParams();
+    const {atualizaValor, valores, setValores} = useForm(Marca.initialValues());
+    const {dadosConsultados} = useConsultaEntidade(MarcaService.consultar);
 
-    const validacoes = {
-        marca: dado => {
-            if (dado && dado.length >= 3) {
-                return { valido: true };
-            } else {
-                return { valido: false, texto: "Marca deve ter ao menos 3 letras." }
-            }
-        }
-    }
-
-    const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-
-    function cancelar() {
-        history.goBack();
-    }
-
-    // TODO: Avaliar remover disable na próxima linha
-    useEffect(() => {
-        if (id) {
-            MarcaService.consultar(id)
-                .then(m => setMarca(m.nome));
-        }
-    }, [id]); // eslint-disable-line
+    useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
 
     return (
-        <form data-testid="form" onSubmit={(event) => {
-            event.preventDefault();
-            if (possoEnviar()) {
-                if (id) {
-                    MarcaService.alterar({ id, nome: marca })
-                        .then(res => {
-                            history.goBack();
-                        });
-                } else {
-                    MarcaService.cadastrar({ nome: marca })
-                        .then(res => {
-                            setMarca("");
-                            history.goBack();
-                        });
-                }
-            }
-        }}>
-            <TextField
-                value={marca}
-                onChange={evt => setMarca(evt.target.value)}
-                onBlur={validarCampos}
-                helperText={erros.marca.texto}
-                error={!erros.marca.valido}
-                name="marca"
-                id="marca"
+        <Formulario
+            alteraServico={MarcaService.alterar}
+            cadastroServico={MarcaService.cadastrar}
+            ehValido={Marca.ehModeloValido()}
+            valores={valores}
+        >
+            <CampoDeTexto
+                id="marca-nome"
+                name="nome"
                 label="Marca"
-                type="text"
-                variant="outlined"
-                fullWidth
-                required
-                margin="normal"
+                value={valores?.nome || ""}
+                error={Marca.validacoesNome(valores?.nome)}
+                required={true}
+                onChange={atualizaValor}
             />
-
-            <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={!possoEnviar()}>
-                {id ? 'Alterar' : 'Cadastrar'}
-            </Button>
-
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={cancelar}>
-                Cancelar
-            </Button>
-        </form>
+            <BotaoDetalhes
+                consultarServico={MarcaService.consultar}
+                salvarDesabilidato={Marca.ehModeloValido(valores)}
+            />
+        </Formulario>
     );
 }
 

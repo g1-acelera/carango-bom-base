@@ -1,6 +1,8 @@
+import API from "../shared/api/api.routes";
+
 const VeiculoService = {
   listar() {
-    return fetch('https://carango-bom-api.herokuapp.com/veiculos')
+    return fetch(`${API}/veiculos`)
       .then(r => r.json());
   },
 };
