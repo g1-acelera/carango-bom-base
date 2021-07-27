@@ -21,12 +21,11 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm run test:ci
+          command: npm run test:coverage
 
       - run:
           name: Build application
           command: npm run build
-
 workflows:
   version: 2
 
