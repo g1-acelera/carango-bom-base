@@ -6,7 +6,7 @@ import ROTAS from "../../shared/constants/rotas.const";
 const CadastroMarca = lazy(() => import("../../pages/cadastro-marca/CadastroMarca"));
 const ListagemMarcas = lazy(() => import("../../pages/listagem-marca/ListagemMarcas"));
 
-const Navegacao = () => {
+const MenuLateralContainer = () => {
     return (
         <>
             <MenuLateral>
@@ -20,4 +20,4 @@ const Navegacao = () => {
     );
 };
 
-export default Navegacao;
+export default MenuLateralContainer;
