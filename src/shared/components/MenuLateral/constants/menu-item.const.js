@@ -5,7 +5,7 @@ const MENU_ITEM = [
     {
         nome: "Dashboard",
         icone: <DashboardOutlined/>,
-        url: ROTAS.INICIAL
+        url: ROTAS.DASHBOARD
     },
     {
         nome: "Veículos",

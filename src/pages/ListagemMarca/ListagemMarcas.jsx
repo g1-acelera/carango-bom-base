@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
 import MarcaService from '../../services/MarcaService';
 import {fabStyles} from '../../@material/Button';
+import ROTAS from "../../shared/constants/rotas.const";
 
 const colunas = [
     {field: "nome", headerName: "Marca"},
@@ -77,7 +78,7 @@ function ListagemMarcas() {
             </div>
 
             <Fab color="primary" aria-label="add" className={classes.fab}
-                 onClick={() => history.push('/cadastro-marca')}>
+                 onClick={() => history.push(ROTAS.CADASTRO_MARCA)}>
                 <AddIcon/>
             </Fab>
         </div>

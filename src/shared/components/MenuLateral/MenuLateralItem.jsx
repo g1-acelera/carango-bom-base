@@ -2,7 +2,7 @@ import React from "react";
 import {Divider, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import MENU_ITEM from "./constants/menu-item.const";
 import sidebarStyles from "../../../@material/Sidebar";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const MenuLateralItem = () => {
     const classes = sidebarStyles();
@@ -15,12 +15,12 @@ const MenuLateralItem = () => {
             <Divider/>
             <List>
                 {MENU_ITEM.map((item, index) => (
-                    <Link to={item.url} key={index}>
-                        <ListItem button key={item.nome}>
+                    <NavLink to={item.url} key={index} activeClassName="ativo">
+                        <ListItem button key={item.nome} to={item.url} key={index}>
                             <ListItemIcon>{item.icone}</ListItemIcon>
                             <ListItemText primary={item.nome}/>
                         </ListItem>
-                    </Link>
+                    </NavLink>
                 ))}
             </List>
         </>
