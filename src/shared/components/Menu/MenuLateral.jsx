@@ -1,46 +1,27 @@
-import React from "react";
-import {AppBar, Drawer, Hidden, IconButton, Toolbar} from "@material-ui/core";
-import {Menu} from "@material-ui/icons";
+import React, {useState} from "react";
+import {Drawer, Hidden} from "@material-ui/core";
 import sidebarStyles from "../../../@material/Sidebar";
 import MenuLateralItem from "./MenuLateralItem";
-import {BotaoEntrar} from "../../../@material/Button";
+import MenuSuperior from "./MenuSuperior";
 
 const MenuLateral = ({children}) => {
     const classes = sidebarStyles();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+    function alteraVisibilidadeMenuLateral() {
+        setMobileOpen(!mobileOpen)
+    }
 
     return (
         <div className={classes.root}>
             <nav className={classes.drawer}>
-                <AppBar position="fixed" className={`${classes.appBar}`}>
-                    <Toolbar className="f-space-between">
-                        <div>
-                            <IconButton
-                                color="inherit"
-                                aria-label="Abrir menu"
-                                edge="start"
-                                onClick={handleDrawerToggle}
-                                className={classes.menuButton}
-                            >
-                                <Menu/>
-                            </IconButton>
-                        </div>
-                        <BotaoEntrar>
-                            Entrar
-                        </BotaoEntrar>
-                    </Toolbar>
-                </AppBar>
+                <MenuSuperior menuClick={alteraVisibilidadeMenuLateral}/>
 
-                {/*Mobile*/}
                 <Hidden smUp implementation="css">
                     <Drawer
                         variant="temporary"
                         open={mobileOpen}
-                        onClose={handleDrawerToggle}
+                        onClose={alteraVisibilidadeMenuLateral}
                         classes={{
                             paper: classes.drawerPaper,
                         }}
@@ -52,7 +33,6 @@ const MenuLateral = ({children}) => {
                     </Drawer>
                 </Hidden>
 
-                {/*Desktop*/}
                 <Hidden xsDown implementation="css">
                     <Drawer
                         classes={{

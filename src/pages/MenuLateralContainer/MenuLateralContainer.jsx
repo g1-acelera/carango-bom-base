@@ -1,6 +1,6 @@
 import React, {lazy} from "react";
 import {Route, Switch} from "react-router-dom";
-import MenuLateral from "../../shared/components/MenuLateral/MenuLateral";
+import MenuLateral from "../../shared/components/Menu/MenuLateral";
 import ROTAS from "../../shared/constants/rotas.const";
 import {Redirect} from "react-router";
 

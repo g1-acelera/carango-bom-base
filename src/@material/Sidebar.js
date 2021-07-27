@@ -14,14 +14,17 @@ const sidebarStyles = makeStyles((theme) => ({
         },
     },
     appBar: {
+        backgroundColor: 'white',
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: `calc(drawerWidth + 1rem)`,
-            backgroundColor: 'white',
             color: grey[800],
             boxShadow: "none",
             display: "flex",
             justifyContent: "flex-end"
+        },
+        [theme.breakpoints.down('sm')]: {
+            color: "var(--azul600)"
         },
     },
     menuButton: {
