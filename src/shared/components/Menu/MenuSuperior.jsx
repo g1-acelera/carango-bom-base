@@ -12,6 +12,7 @@ const MenuSuperior = ({menuClick}) => {
             <Toolbar className="f-space-between">
                 <div>
                     <IconButton
+                        data-testid="botao-menu"
                         color="inherit"
                         aria-label="Abrir menu"
                         edge="start"
@@ -21,7 +22,7 @@ const MenuSuperior = ({menuClick}) => {
                         <Menu/>
                     </IconButton>
                 </div>
-                <BotaoEntrar>
+                <BotaoEntrar data-testid="botao-entrar">
                     Entrar
                 </BotaoEntrar>
             </Toolbar>
