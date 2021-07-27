@@ -1,6 +1,7 @@
 @import './theme/flex.css';
 @import './theme/cores.css';
 @import './theme/fonte.css';
+@import './theme/link.css';
 
 body {
   margin: 0;
