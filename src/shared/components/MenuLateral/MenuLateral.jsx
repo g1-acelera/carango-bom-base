@@ -1,8 +1,9 @@
 import React from "react";
-import {AppBar, Drawer, Hidden, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Drawer, Hidden, IconButton, Toolbar} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import sidebarStyles from "../../../@material/Sidebar";
 import MenuLateralItem from "./MenuLateralItem";
+import {BotaoEntrar} from "../../../@material/Button";
 
 const MenuLateral = ({children}) => {
     const classes = sidebarStyles();
@@ -14,21 +15,23 @@ const MenuLateral = ({children}) => {
 
     return (
         <div className={classes.root}>
-            <nav className={classes.drawer} aria-label="mailbox folders">
-                <AppBar position="fixed" className={classes.appBar}>
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Abrir menu"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                            className={classes.menuButton}
-                        >
-                            <Menu/>
-                        </IconButton>
-                        <Typography variant="h6" noWrap>
-                            Título da página
-                        </Typography>
+            <nav className={classes.drawer}>
+                <AppBar position="fixed" className={`${classes.appBar}`}>
+                    <Toolbar className="f-space-between">
+                        <div>
+                            <IconButton
+                                color="inherit"
+                                aria-label="Abrir menu"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                className={classes.menuButton}
+                            >
+                                <Menu/>
+                            </IconButton>
+                        </div>
+                        <BotaoEntrar>
+                            Entrar
+                        </BotaoEntrar>
                     </Toolbar>
                 </AppBar>
 

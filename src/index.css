@@ -2,6 +2,7 @@
 @import './theme/cores.css';
 @import './theme/fonte.css';
 @import './theme/link.css';
+@import './theme/box-shadow.css';
 
 body {
   margin: 0;

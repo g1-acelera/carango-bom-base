@@ -18,7 +18,7 @@ export const fabStyles = makeStyles(() => ({
     }
 }));
 
-export const BotaoSalvar = withStyles ({
+export const BotaoSalvar = withStyles({
     root: {
         backgroundColor: pink[400],
         borderRadius: '20px',
@@ -32,16 +32,29 @@ export const BotaoSalvar = withStyles ({
     },
 })(Button);
 
-export const BotaoCancelar = withStyles ({
+export const BotaoCancelar = withStyles({
     root: {
         backgroundColor: 'transparent',
-        boxShadow: 'none',
         borderRadius: '20px',
         color: 'red',
         '&:hover': {
             backgroundColor: 'rgba(244, 67, 54, 0.05)',
             border: 'none',
-            boxShadow: 'none',
+        },
+    },
+})(Button);
+
+export const BotaoEntrar = withStyles({
+    root: {
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        fontSize: '.7rem',
+        fontWeight: '800',
+        borderRadius: '20px',
+        color: 'var(--azul600)',
+        border: '1.5px solid var(--azul600)',
+        '&:hover': {
+            backgroundColor: 'rgba(30, 136, 229, .1)',
         },
     },
 })(Button);

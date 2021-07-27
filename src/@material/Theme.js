@@ -1,7 +1,7 @@
 import pink from '@material-ui/core/colors/pink';
 import {ptBR} from '@material-ui/core/locale';
 import {makeStyles,createTheme} from '@material-ui/core';
-import {red} from "@material-ui/core/colors";
+import {blue, grey, red} from "@material-ui/core/colors";
 
 export const defaultStyles = makeStyles((theme) => ({
     root: {
@@ -23,7 +23,16 @@ export const muiTheme = createTheme({
     palette: {
         primary: {
             main: pink[800],
-            error: red[500]
+        },
+        secondary: {
+            main: blue[600],
+        },
+        error: {
+            main: red[500],
+        },
+        text: {
+            primary: grey[800],
+            secondary: grey[600],
         }
     },
     typography: {

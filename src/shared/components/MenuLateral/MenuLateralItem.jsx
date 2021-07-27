@@ -16,7 +16,7 @@ const MenuLateralItem = () => {
             <List>
                 {MENU_ITEM.map((item, index) => (
                     <NavLink to={item.url} key={index} activeClassName="ativo">
-                        <ListItem button key={item.nome} to={item.url} key={index}>
+                        <ListItem button to={item.url}>
                             <ListItemIcon>{item.icone}</ListItemIcon>
                             <ListItemText primary={item.nome}/>
                         </ListItem>
