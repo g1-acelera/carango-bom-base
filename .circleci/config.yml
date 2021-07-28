@@ -23,6 +23,9 @@ jobs:
           name: Run tests
           command: npm run test:coverage
 
+      - store_artifacts:
+          path: coverage
+
       - run:
           name: Build application
           command: npm run build
