@@ -23,13 +23,12 @@ jobs:
           name: Run tests
           command: npm run test:coverage
 
+      - store_artifacts:
+          path: coverage
+
       - run:
           name: Build application
           command: npm run build
-
-      - store_artifacts:
-          path: coverage/lcov.info
-          destination: coverate_report
 workflows:
   version: 2
 
