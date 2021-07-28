@@ -1,12 +1,12 @@
 import React from "react";
 import {AppBar, IconButton, Toolbar} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
-import {BotaoEntrar} from "../../../@material/Button";
+import {BotaoEntrar, BotaoSair} from "../../../@material/Button";
 import sidebarStyles from "../../../@material/Sidebar";
 import {useAutenticacaoContext} from "../../context/autenticacao.context";
 
 const MenuSuperior = ({menuClick}) => {
-    // const {dadosUsuario} = useAutenticacaoContext();
+    const {ehUsuarioLogado} = useAutenticacaoContext();
     const classes = sidebarStyles();
 
     return (
@@ -25,9 +25,14 @@ const MenuSuperior = ({menuClick}) => {
                             <Menu/>
                         </IconButton>
                     </div>
+                    { !ehUsuarioLogado &&
                     <BotaoEntrar data-testid="botao-entrar">
                         Entrar
-                    </BotaoEntrar>
+                    </BotaoEntrar> }
+                    { ehUsuarioLogado &&
+                    <BotaoSair data-testid="botao-sair">
+                        Sair
+                    </BotaoSair> }
                 </Toolbar>
             </AppBar>
         </>

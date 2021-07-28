@@ -1,4 +1,4 @@
-import {getDadosUsuario, setDadosUsuario, usuarioId} from "./local-storage";
+import {estaLogado, getDadosUsuario, setDadosUsuario, usuarioId} from "./local-storage";
 
 let dadosUsuario;
 
@@ -29,6 +29,17 @@ describe("Local storage testes", () => {
 
         it("Deve retornar vazio quando não houver id do usuário", () => {
             expect(usuarioId()).toBeUndefined();
+        });
+    });
+
+    describe("Login Usuário", () =>  {
+        it("Deve estar logado", () => {
+            setDadosUsuario(dadosUsuario);
+            expect(estaLogado()).toBeTruthy();
+        });
+
+        it("Nao deveria estar logado", () => {
+            expect(estaLogado()).toBeFalsy();
         });
     });
 });

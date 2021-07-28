@@ -58,3 +58,18 @@ export const BotaoEntrar = withStyles({
         },
     },
 })(Button);
+
+export const BotaoSair = withStyles({
+    root: {
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        fontSize: '.7rem',
+        fontWeight: '800',
+        borderRadius: '20px',
+        color: 'var(--vermelho400)',
+        border: '1.5px solid var(--vermelho400)',
+        '&:hover': {
+            backgroundColor: 'rgba(239, 83, 80, .1)',
+        },
+    },
+})(Button);
