@@ -4,5 +4,5 @@ a {
 }
 
 .ativo, .ativo > .MuiButtonBase-root > .MuiListItemIcon-root {
-    color: var(--azul600) !important;
+    color: var(--azul600);
 }

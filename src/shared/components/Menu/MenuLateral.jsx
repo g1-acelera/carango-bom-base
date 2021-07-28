@@ -6,10 +6,10 @@ import MenuSuperior from "./MenuSuperior";
 
 const MenuLateral = ({children}) => {
     const classes = sidebarStyles();
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [menuAberto, setMenuFechado] = useState(false);
 
     function alteraVisibilidadeMenuLateral() {
-        setMobileOpen(!mobileOpen)
+        setMenuFechado(!menuAberto);
     }
 
     return (
@@ -20,7 +20,7 @@ const MenuLateral = ({children}) => {
                 <Hidden smUp implementation="css">
                     <Drawer
                         variant="temporary"
-                        open={mobileOpen}
+                        open={menuAberto}
                         onClose={alteraVisibilidadeMenuLateral}
                         classes={{
                             paper: classes.drawerPaper,

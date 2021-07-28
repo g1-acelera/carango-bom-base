@@ -1,6 +1,6 @@
 import jwt_decode from 'jwt-decode';
 
-const CHAVE = 'CARANGO_BOM_C1';
+const CHAVE = 'CARANGO_BOM_G1';
 
 export function estaLogado() {
     return !!usuarioId();

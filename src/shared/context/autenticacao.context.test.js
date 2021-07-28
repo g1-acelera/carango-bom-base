@@ -24,7 +24,7 @@ beforeEach(() => {
 
 describe("Autenticação context testes", () => {
     describe("Usuário logado/deslogado", () => {
-        it("Deve iniciar com usuário logado falso por padrão", () => {
+        it("Deve iniciar com usuário deslogado por padrão", () => {
             const {getByText} = configuraCorpoDoTeste(
                 (value) => <span>Usuário logado: {value.ehUsuarioLogado.toString()}</span>
             );
@@ -74,13 +74,13 @@ describe("Autenticação context testes", () => {
                     <>
                         <button onClick={() => value.entra(usuario)}>Entrar</button>
                         <span>Nome: {value.dadosUsuario?.nome}</span>
-                        <span>Nome: {value.dadosUsuario?.email}</span>
+                        <span>Email: {value.dadosUsuario?.email}</span>
                     </>
                 )
             );
             fireEvent.click(getByText("Entrar"));
             expect(getByText(`Nome: ${usuario.nome}`)).toBeTruthy();
-            expect(getByText(`Nome: ${usuario.email}`)).toBeTruthy();
+            expect(getByText(`Email: ${usuario.email}`)).toBeTruthy();
         });
 
         it("Deve limpar os dados do usuário", () => {
