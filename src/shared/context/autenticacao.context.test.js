@@ -35,7 +35,7 @@ describe("Autenticação context testes", () => {
             const {getByText} = configuraCorpoDoTeste(
                 (value) => (
                     <>
-                        <button onClick={value.entra}>Entrar</button>
+                        <button onClick={value.adicionaDadosUsuario}>Entrar</button>
                         <span>Usuário logado: {value.ehUsuarioLogado.toString()}</span>
                     </>
                 )
@@ -72,7 +72,7 @@ describe("Autenticação context testes", () => {
             const {getByText} = configuraCorpoDoTeste(
                 (value) => (
                     <>
-                        <button onClick={() => value.entra(usuario)}>Entrar</button>
+                        <button onClick={() => value.adicionaDadosUsuario(usuario)}>Entrar</button>
                         <span>Nome: {value.dadosUsuario?.nome}</span>
                         <span>Email: {value.dadosUsuario?.email}</span>
                     </>
@@ -87,8 +87,8 @@ describe("Autenticação context testes", () => {
             const {getByText} = configuraCorpoDoTeste(
                 (value) => (
                     <>
-                        <button onClick={() => value.entra()}>Entrar</button>
-                        <button onClick={value.sai}>Sair</button>
+                        <button onClick={() => value.adicionaDadosUsuario()}>Entrar</button>
+                        <button onClick={value.removeDadosUsuario}>Sair</button>
                         <span>Nome: {value.dadosUsuario?.nome}</span>
                         <span>Email: {value.dadosUsuario?.email}</span>
                     </>

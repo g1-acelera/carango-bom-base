@@ -12,19 +12,19 @@ const AutenticacaoProvider = ({children}) => {
     const [dadosUsuario, setDadosUsuario] = useState(undefined);
     const [ehUsuarioLogado, setEhUsuarioLogado] = useState(estaLogado());
 
-    function entra(dadosUsuario) {
+    function adicionaDadosUsuario(dadosUsuario) {
         setEhUsuarioLogado(true);
         setDadosUsuario(dadosUsuario);
     }
 
-    function sai() {
+    function removeDadosUsuario() {
         setEhUsuarioLogado(false);
         setDadosUsuario(undefined);
     }
 
     return (
         <AutenticacaoContext.Provider
-            value={{dadosUsuario, ehUsuarioLogado, entra, sai}}
+            value={{dadosUsuario, ehUsuarioLogado, adicionaDadosUsuario, removeDadosUsuario}}
         >
             {children}
         </AutenticacaoContext.Provider>
