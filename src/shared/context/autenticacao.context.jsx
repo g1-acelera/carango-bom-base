@@ -4,8 +4,8 @@ import {estaLogado} from "../local-storage/local-storage";
 export const AutenticacaoContext = createContext({
     dadosUsuario: {},
     ehUsuarioLogado: estaLogado(),
-    entra: () => {},
-    sai: () => {},
+    adicionaDadosUsuario: () => {},
+    removeDadosUsuario: () => {},
 });
 
 const AutenticacaoProvider = ({children}) => {

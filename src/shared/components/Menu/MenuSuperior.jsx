@@ -10,32 +10,30 @@ const MenuSuperior = ({menuClick}) => {
     const classes = sidebarStyles();
 
     return (
-        <>
-            <AppBar position="fixed" className={`${classes.appBar}`}>
-                <Toolbar className="f-space-between">
-                    <div>
-                        <IconButton
-                            data-testid="botao-menu"
-                            color="inherit"
-                            aria-label="Abrir menu"
-                            edge="start"
-                            onClick={() => menuClick()}
-                            className={classes.menuButton}
-                        >
-                            <Menu/>
-                        </IconButton>
-                    </div>
-                    { !ehUsuarioLogado &&
-                    <BotaoEntrar data-testid="botao-entrar">
-                        Entrar
-                    </BotaoEntrar> }
-                    { ehUsuarioLogado &&
-                    <BotaoSair data-testid="botao-sair">
-                        Sair
-                    </BotaoSair> }
-                </Toolbar>
-            </AppBar>
-        </>
+        <AppBar position="fixed" className={`${classes.appBar}`}>
+            <Toolbar className="f-space-between">
+                <div>
+                    <IconButton
+                        data-testid="botao-menu"
+                        color="inherit"
+                        aria-label="Abrir menu"
+                        edge="start"
+                        onClick={() => menuClick()}
+                        className={classes.menuButton}
+                    >
+                        <Menu/>
+                    </IconButton>
+                </div>
+                {!ehUsuarioLogado && <BotaoEntrar onClick={() => {
+                }} data-testid="botao-entrar">
+                    Entrar
+                </BotaoEntrar>}
+                {ehUsuarioLogado && <BotaoSair onClick={() => {
+                }} data-testid="botao-sair">
+                    Sair
+                </BotaoSair>}
+            </Toolbar>
+        </AppBar>
     );
 }
 
