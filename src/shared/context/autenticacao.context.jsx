@@ -3,8 +3,6 @@ import {estaLogado} from "../local-storage/local-storage";
 
 export const AutenticacaoContext = createContext({
     dadosUsuario: {},
-    adicionaDadosUsuario: dados => {},
-    limpaDadosUsuario: () => {},
     ehUsuarioLogado: estaLogado(),
     entra: () => {},
     sai: () => {},
