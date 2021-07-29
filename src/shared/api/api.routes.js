@@ -1,5 +1,3 @@
-const API = process.env.REACT_APP_ENV === "Development" ?
-    "https://carango-bom-api.herokuapp.com" :
-    "https://localhost";
+const API = process.env.REACT_APP_ENV === "Development" ? "http://localhost:8080" : "https://carango-bom-api.herokuapp.com"
 
 export default API;
