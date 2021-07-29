@@ -31,6 +31,7 @@ jobs:
           name: Build application
           command: npm run build
       
+      #Testing
       - sonarcloud/scan:
           sonar_token_variable_name: SONAR_TOKEN 
 
