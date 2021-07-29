@@ -8,7 +8,6 @@
     --cinza-secundario: #DCDBDC;
     --azul600: #1E88E5;
     --vermelho600: #e53935;
-    --branco: white;
     --vermelho400: #EF5350;
 }
 
@@ -17,5 +16,5 @@
 }
 
 .branco-bg {
-    background-color: var(--branco);
+    background-color: white;
 }
