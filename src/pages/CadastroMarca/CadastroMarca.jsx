@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 
 import Marca from "../../shared/models/Marca";
 import useForm from "../../shared/hooks/useForm";
-import CampoDeTexto from '../../shared/components/campo-de-texto/CampoDeTexto'
+import CampoDeTexto from '../../shared/components/CampoDeTexto/CampoDeTexto'
 import MarcaService from "../../services/MarcaService";
-import BotaoDetalhes from "../../shared/components/botao-detalhes/BotaoDetalhes";
-import Formulario from "../../shared/components/formulario/Formulario";
+import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
+import Formulario from "../../shared/components/Formulario/Formulario";
 import useConsultaEntidade from "../../shared/hooks/useConsultaEntidade";
 
 function CadastroMarca() {

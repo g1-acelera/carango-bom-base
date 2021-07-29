@@ -2,9 +2,19 @@
     --principal700: #AD1457;
     --principal400: #EC407A;
     --fundo: #F5F6F8;
+    --texto-primario: #424242;
     --texto-secundario: #757575;
     --icone-contraste: #616161;
     --cinza-secundario: #DCDBDC;
-    --texto-primario: #424242;
     --azul600: #1E88E5;
+    --vermelho600: #e53935;
+    --vermelho400: #EF5350;
+}
+
+.principal700-fg {
+    color: var(--principal700);
+}
+
+.branco-bg {
+    background-color: white;
 }
