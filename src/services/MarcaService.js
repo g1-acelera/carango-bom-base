@@ -5,8 +5,8 @@ const MarcaService = {
     return fetch(`${API}/marcas`, {
       method: 'POST',
       body: JSON.stringify(marca),
-      headers: {
-      'Content-Type': 'application/json'
+      headers: { 
+        'Content-Type': 'application/json'
       }
     }).then(r => r.json());
   },
@@ -14,7 +14,10 @@ const MarcaService = {
   alterar(marca) {
     return fetch(`${API}/marcas${marca.id}`, {
       method: 'PUT',
-      body: JSON.stringify(marca)
+      body: JSON.stringify(marca),
+      headers: { 
+        'Content-Type': 'application/json'
+      }
     }).then(r => r.json());
   },
 
@@ -29,6 +32,9 @@ const MarcaService = {
   excluir(marca) {
     return fetch((`${API}/marcas${marca.id}`), {
       method: 'DELETE',
+      headers: { 
+        'Content-Type': 'application/json'
+      }
     })
       .then(r => r.json());
   }
