@@ -15,7 +15,9 @@ describe("Autenticação context testes", () => {
             const {getByText} = autenticacaoContextConsumer(
                 (value) => (
                     <>
-                        <button onClick={value.adicionaDadosUsuario}>Entrar</button>
+                        <button onClick={() => value.adicionaDadosUsuario(usuarioAutenticacao)}>
+                            Entrar
+                        </button>
                         <span>Usuário logado: {value.ehUsuarioLogado.toString()}</span>
                     </>
                 )
@@ -28,8 +30,10 @@ describe("Autenticação context testes", () => {
             const {getByText} = autenticacaoContextConsumer(
                 (value) => (
                     <>
-                        <button onClick={value.entra}>Entrar</button>
-                        <button onClick={value.sai}>Sair</button>
+                        <button onClick={() => value.adicionaDadosUsuario(usuarioAutenticacao)}>
+                            Entrar
+                        </button>
+                        <button onClick={value.removeDadosUsuario}>Sair</button>
                         <span>Usuário logado: {value.ehUsuarioLogado.toString()}</span>
                     </>
                 )
@@ -55,14 +59,12 @@ describe("Autenticação context testes", () => {
                         <button onClick={() => value.adicionaDadosUsuario(usuarioAutenticacao)}>
                             Entrar
                         </button>
-                        <span>Nome: {value.dadosUsuario?.nome}</span>
-                        <span>Email: {value.dadosUsuario?.email}</span>
+                        <span>Id: {value.dadosUsuario?.id}</span>
                     </>
                 )
             );
             fireEvent.click(getByText("Entrar"));
-            expect(getByText(`Nome: ${usuarioAutenticacao.nome}`)).toBeTruthy();
-            expect(getByText(`Email: ${usuarioAutenticacao.email}`)).toBeTruthy();
+            expect(getByText(`Id: ${usuarioAutenticacao.id}`)).toBeTruthy();
         });
 
         it("Deve limpar os dados do usuário", () => {
