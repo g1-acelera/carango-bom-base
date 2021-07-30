@@ -5,6 +5,7 @@ import ROTAS from "../../shared/constants/rotas.const";
 import {Redirect} from "react-router";
 
 const CadastroMarca = lazy(() => import("../CadastroMarca/CadastroMarca"));
+const CadastroVeiculo = lazy(() => import("../CadastroVeiculo/CadastroVeiculo"));
 const ListagemMarcas = lazy(() => import("../ListagemMarca/ListagemMarcas"));
 const ListagemVeiculos = lazy(() => import("../ListagemVeiculos/ListagemVeiculos"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
@@ -22,6 +23,7 @@ const MenuLateralContainer = () => {
                     <Route path={ROTAS.ALTERACAO_MARCA} component={CadastroMarca}/>
                     <Route path={ROTAS.MARCAS} component={ListagemMarcas}/>
                     <Route path={ROTAS.VEICULOS} component={ListagemVeiculos}/>
+                    <Route path={ROTAS.CADASTRO_VEICULO} component={CadastroVeiculo}/>
                 </Switch>
             </MenuLateral>
         </>
