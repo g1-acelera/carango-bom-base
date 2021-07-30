@@ -2,26 +2,19 @@ import React from "react"
 import { useTable, useSortBy, useFilters, useGlobalFilter } from "react-table"
 
 import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward"
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward"
 import TableContainer from "@material-ui/core/TableContainer"
+import { makeStyles } from "@material-ui/core/styles"
 
-import FiltroGlobal from "./FiltroGlobal"
-import FiltroDeColuna from "./FiltroDeColuna"
-import Typography from "@material-ui/core/Typography"
+import Cabecalho from "./Cabecalho"
+import Corpo from "./Corpo"
 
-export default function Tabela({ columns, data }) {
-  const defaultColumn = React.useMemo(
-    () => ({
-      Filter: FiltroDeColuna,
-    }),
-    []
-  )
+const tableStyles = makeStyles((theme) => ({
+  container: {
+    width: "calc(100vw - 240px)"
+  }
+}))
 
+export default function Tabela({ columns, data, colunaDeAcoes}) {
   const {
     headerGroups,
     rows,
@@ -30,62 +23,28 @@ export default function Tabela({ columns, data }) {
     preFilteredRows,
     setGlobalFilter,
   } = useTable(
-    { columns, defaultColumn, data },
+    { columns, data },
     useFilters,
     useGlobalFilter,
     useSortBy
   )
 
+  const styles = tableStyles()
+
   return (
-    <TableContainer>
+    <TableContainer className={styles.container}>
       <Table>
-        <TableHead>
-          <TableRow>
-            <FiltroGlobal
-              preFilteredRows={preFilteredRows}
-              setGlobalFilter={setGlobalFilter}
-              globalFilter={state.globalFilter}
-            />
-          </TableRow>
-          {headerGroups.map((headerGroup) => (
-            <TableRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <TableCell
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                >
-                  <Typography variant="h6">
-                    {column.render("Header")}
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <ArrowDownwardIcon fontSize="small" />
-                      ) : (
-                        <ArrowUpwardIcon fontSize="small" />
-                      )
-                    ) : (
-                      ""
-                    )}
-                  </Typography>
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableHead>
-        <TableBody>
-          {rows.map((row, i) => {
-            prepareRow(row)
-            return (
-              <TableRow {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <TableCell {...cell.getCellProps()}>
-                      {cell.render("Cell")}
-                    </TableCell>
-                  )
-                })}
-              </TableRow>
-            )
-          })}
-        </TableBody>
+        <Cabecalho
+          headerGroups={headerGroups}
+          preFilteredRows={preFilteredRows}
+          setGlobalFilter={setGlobalFilter}
+          globalFilter={state.globalFilter}
+        />
+        <Corpo
+          rows={rows}
+          prepareRow={prepareRow}
+          colunaDeAcoes={colunaDeAcoes}
+        />
       </Table>
     </TableContainer>
   )
