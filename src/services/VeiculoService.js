@@ -11,14 +11,20 @@ const VeiculoService = {
   cadastrar(veiculo) {
     return fetch(`${API}/veiculos`, {
       method: 'POST',
-      body: JSON.stringify(veiculo)
+      body: JSON.stringify(veiculo),
+      headers: { 
+        'Content-Type': 'application/json'
+      }
     }).then(r => 
       r.json());
   },
   alterar(veiculo) {
     return fetch(`${API}/veiculos/${veiculo.id}`, {
       method: 'PUT',
-      body: JSON.stringify(veiculo)
+      body: JSON.stringify(veiculo),
+      headers: { 
+        'Content-Type': 'application/json'
+      }
     }).then(r => r.json());
   },
 };

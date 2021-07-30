@@ -80,7 +80,6 @@ function CadastroVeiculo() {
           onChange={atualizaValor}></CampoDeSelecao>
 
         <BotaoDetalhes
-          consultarServico={VeiculoService.consultar}
           salvarDesabilidato={Veiculo.ehVeiculoValido(valores)}/>
       </Formulario>
     </h1>
