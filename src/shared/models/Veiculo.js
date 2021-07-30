@@ -4,7 +4,7 @@ import validaObrigatoriedade from '../../shared/validators/obrigatorio/obrigator
 class Veiculo {
     static initialValues() {
         return {
-            modelo: "",
+            nome: "",
             marcaId: "",
             valor: "",
             ano: ""
@@ -15,6 +15,13 @@ class Veiculo {
         const tamanhoMinimo = validaTamanhoMinimo(valorDoCampo, 3)
         const obrigatorio = validaObrigatoriedade(valorDoCampo)
         return tamanhoMinimo ? tamanhoMinimo : obrigatorio
+    }
+
+    static validacaoValor(valorDoCampo) {
+        const obrigatorio = validaObrigatoriedade(valorDoCampo)
+        if (obrigatorio === "")
+            return false
+        return true
     }
 
     static ehVeiculoValido(valores) {

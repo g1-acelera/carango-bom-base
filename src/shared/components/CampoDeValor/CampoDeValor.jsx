@@ -1,37 +1,34 @@
 import React from 'react';
-import CurrencyTextField from '@unicef/material-ui-currency-textfield';
+import NumberFormat from 'react-number-format';
+import PropTypes from 'prop-types';
 
-function CampoDeValor({
-  id,
-  name,
-  value,
-  label,
-  currencySymbol,
-  onChange,
-  minimumValue,
-  maximumValue,
-  minimumValueMessage,
-  decimalCharacter,
-  digitGroupSeparator,
-  isValid,
-  required = false
-}) {
+CampoDeValor.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+function CampoDeValor(props) {
+  const { inputRef, onChange, ...other } = props;
+
   return (
-    <CurrencyTextField
-        id={id}
-        name={name}
-        label={label}
-        value={value}
-        currencySymbol={currencySymbol}
-        onChange={onChange}
-        error={isValid}
-        minimumValue={minimumValue}
-        maximumValue={maximumValue}
-        helperText={isValid && minimumValueMessage}
-        decimalCharacter={decimalCharacter}
-        digitGroupSeparator={digitGroupSeparator}
-        required={required}
-    />);
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: "valor",
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator="."
+      decimalSeparator=","
+      prefix="R$"
+      isNumericString
+    />
+  );
 }
 
 export default CampoDeValor;

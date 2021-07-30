@@ -12,6 +12,8 @@ import CampoDeTexto from '../../shared/components/CampoDeTexto/CampoDeTexto';
 import CampoDeValor from '../../shared/components/CampoDeValor/CampoDeValor';
 import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSelecao';
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
+import TextField from '@material-ui/core/TextField';
+
 
 function CadastroVeiculo() {
 
@@ -19,9 +21,18 @@ function CadastroVeiculo() {
   const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
   const [value,
     setValue] = React.useState(0);
-  const isValid = value > 0;
 
   useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
+
+  const handleChange = (event) => {
+    setValores({
+      ...value.value,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+
+  
 
   return (
     <h1>Cadastrar Veículo
@@ -42,23 +53,20 @@ function CadastroVeiculo() {
           required={true}
           onChange={atualizaValor}/>
 
-        <CampoDeValor
-          currencySymbol='R$'
-          isValid={isValid}
-          digitGroupSeparator='.'
-          decimalCharacter=','
-          id="veiculo-valor"
-          name="valor"
-          value={valores
-            ?.valor || ""}
+        <TextField
+          value={valores?.value}
+          onChange={handleChange}
+          name="numberformat"
+          id="formatted-numberformat-input"
+          InputProps={{
+            inputComponent: CampoDeValor,
+          }}
+          error={Veiculo.validacaoValor(value?.value)}
+          variant="outlined"
           label="Valor"
-          currencySymbol="R$"
-          onChange={atualizaValor}
-          minimumValue={"0"}
-          decimalCharacter=","
-          digitGroupSeparator="."
-          isValid={isValid}
-          required={true}/>
+          required={true}
+          fullWidth
+        />
 
         <CampoDeTexto
           id="veiculo-ano"
@@ -77,10 +85,10 @@ function CadastroVeiculo() {
           value={valores
           ?.marcaId || ""}
           label="Marca"
+          fullWidth
           onChange={atualizaValor}></CampoDeSelecao>
 
         <BotaoDetalhes
-          consultarServico={VeiculoService.consultar}
           salvarDesabilidato={Veiculo.ehVeiculoValido(valores)}/>
       </Formulario>
     </h1>

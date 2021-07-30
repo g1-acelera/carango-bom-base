@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import MarcaService from '../../../services/MarcaService';
+
+
+
 
 function CampoDeSelecao({
   id,
@@ -13,9 +17,18 @@ function CampoDeSelecao({
   onChange,
   required = false
 }) {
+  const [marcas, setMarcas] = useState();
+
+  useEffect(() => { 
+    MarcaService.listar()
+    .then(dados => { 
+      setMarcas(dados)
+    });
+  } , []);
+
   return (
-    <FormControl className={className}>
-      <Select
+    <FormControl fullWidth className={className}>
+      <Select      
         id={id}
         name={name}
         value={value}
@@ -29,9 +42,11 @@ function CampoDeSelecao({
         <MenuItem value="" disabled>
         {label}
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {marcas && marcas.map((marca) =>  (
+         <MenuItem key={marca.id} value={marca.id}>
+        {marca.nome}
+        </MenuItem>
+    ))}
       </Select>
       <FormHelperText></FormHelperText>
     </FormControl>

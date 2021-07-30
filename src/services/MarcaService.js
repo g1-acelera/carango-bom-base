@@ -4,7 +4,10 @@ const MarcaService = {
   cadastrar(marca) {
     return fetch(`${API}/marcas`, {
       method: 'POST',
-      body: JSON.stringify(marca)
+      body: JSON.stringify(marca),
+      headers: {
+      'Content-Type': 'application/json'
+      }
     }).then(r => r.json());
   },
 
