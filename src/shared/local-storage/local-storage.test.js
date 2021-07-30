@@ -1,4 +1,10 @@
-import {estaLogado, getDadosUsuario, setDadosUsuario, usuarioId} from "./local-storage";
+import {
+    estaLogadoLocalStorage,
+    getDadosUsuarioLocalStorage,
+    limpaDadosUsuarioLocalStorage,
+    setDadosUsuarioLocalStorage,
+    usuarioIdLocalStorage
+} from "./local-storage";
 
 let dadosUsuario;
 
@@ -8,38 +14,44 @@ beforeEach(() => {
         id: `1`,
         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOjEsImlhdCI6MTUxNjIzOTAyMn0.X_M6O0tdAGnnqqYoV_Q4xQZeG58gth-PG7KSW96tsic"
     };
-    setDadosUsuario(null);
+    setDadosUsuarioLocalStorage(null);
 });
 
 describe("Local storage testes", () => {
     describe("Dados usuário", () => {
         it("Deve adicionar os dados do usuário", () => {
-            setDadosUsuario(dadosUsuario);
-            expect(getDadosUsuario()).toStrictEqual(dadosUsuario);
+            setDadosUsuarioLocalStorage(dadosUsuario);
+            expect(getDadosUsuarioLocalStorage()).toStrictEqual(dadosUsuario);
         });
 
         it('Deve retornar null quando não houver dados de usuário', () => {
-            expect(getDadosUsuario()).toBeNull();
+            expect(getDadosUsuarioLocalStorage()).toBeNull();
         });
 
         it("Deve retornar o id do usuário", () => {
-            setDadosUsuario(dadosUsuario);
-            expect(usuarioId()).toBe(1);
+            setDadosUsuarioLocalStorage(dadosUsuario);
+            expect(usuarioIdLocalStorage()).toBe(1);
         });
 
         it("Deve retornar vazio quando não houver id do usuário", () => {
-            expect(usuarioId()).toBeUndefined();
+            expect(usuarioIdLocalStorage()).toBeUndefined();
+        });
+
+        it("Deve limpar os dados armazenados do usuário (limpaDadosUsuarioLocalStorage)", () => {
+            setDadosUsuarioLocalStorage(dadosUsuario);
+            limpaDadosUsuarioLocalStorage();
+            expect(getDadosUsuarioLocalStorage()).toBeNull();
         });
     });
 
     describe("Login Usuário", () =>  {
         it("Deve estar logado", () => {
-            setDadosUsuario(dadosUsuario);
-            expect(estaLogado()).toBeTruthy();
+            setDadosUsuarioLocalStorage(dadosUsuario);
+            expect(estaLogadoLocalStorage()).toBeTruthy();
         });
 
-        it("Nao deveria estar logado", () => {
-            expect(estaLogado()).toBeFalsy();
+        it("Não deve estar logado", () => {
+            expect(estaLogadoLocalStorage()).toBeFalsy();
         });
     });
 });

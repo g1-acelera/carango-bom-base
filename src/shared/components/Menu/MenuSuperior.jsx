@@ -4,10 +4,17 @@ import {Menu} from "@material-ui/icons";
 import {BotaoEntrar, BotaoSair} from "../../../@material/Button";
 import sidebarStyles from "../../../@material/Sidebar";
 import {useAutenticacaoContext} from "../../context/autenticacao.context";
+import {useHistory} from "react-router";
+import ROTAS from "../../constants/rotas.const";
 
 const MenuSuperior = ({menuClick}) => {
-    const {ehUsuarioLogado} = useAutenticacaoContext();
+    const history = useHistory();
+    const {ehUsuarioLogado, removeDadosUsuario} = useAutenticacaoContext();
     const classes = sidebarStyles();
+
+    function navegaParaLogin() {
+        history.push(ROTAS.LOGIN);
+    }
 
     return (
         <AppBar position="fixed" className={`${classes.appBar}`}>
@@ -24,14 +31,18 @@ const MenuSuperior = ({menuClick}) => {
                         <Menu/>
                     </IconButton>
                 </div>
-                {!ehUsuarioLogado && <BotaoEntrar onClick={() => {
-                }} data-testid="botao-entrar">
-                    Entrar
-                </BotaoEntrar>}
-                {ehUsuarioLogado && <BotaoSair onClick={() => {
-                }} data-testid="botao-sair">
-                    Sair
-                </BotaoSair>}
+                {
+                    !ehUsuarioLogado &&
+                    <BotaoEntrar onClick={navegaParaLogin} data-testid="botao-entrar">
+                        Entrar
+                    </BotaoEntrar>
+                }
+                {
+                    ehUsuarioLogado &&
+                    <BotaoSair onClick={removeDadosUsuario} data-testid="botao-sair">
+                        Sair
+                    </BotaoSair>
+                }
             </Toolbar>
         </AppBar>
     );
