@@ -7,20 +7,21 @@ export default function ListagemVeiculos() {
   const colunas = useMemo(
     () => [
       {
-        Header: "Modelo",
+        header: "Modelo",
         accessor: "nome",
       },
       {
-        Header: "Marca",
+        header: "Marca",
         accessor: "marca.nome",
       },
       {
-        Header: "Ano",
+        header: "Ano",
         accessor: "ano",
       },
       {
-        Header: "Valor R$",
+        header: "Valor",
         accessor: "valor",
+        type: "currency"
       },
     ],
     []
@@ -32,5 +33,10 @@ export default function ListagemVeiculos() {
     VeiculoService.listar().then((result) => setVeiculos(result))
   }
 
-  return <Tabela columns={colunas} data={veiculos} />
+  return (
+    <Tabela 
+      columns={colunas} 
+      data={veiculos}
+      colunaDeAcoes={true} />
+  )
 }
