@@ -1,20 +1,13 @@
 import React from "react";
 import {fireEvent, render} from "@testing-library/react";
 import MenuSuperior from "./MenuSuperior";
-import {autenticacaoContextConsumer, usuarioAutenticacao} from "../../test-utils/autenticacao-context-consumer";
+import {
+    autenticacaoContextConsumer,
+    BotaoSimular,
+    usuarioAutenticacao
+} from "../../test-utils/autenticacao-context-consumer";
 
 let menuClick = jest.fn();
-
-const BotaoSimular = ({value}) => {
-    return (
-        <button
-            data-testid="botao-simular"
-            onClick={() => value.adicionaDadosUsuario(usuarioAutenticacao)}
-        >
-            Simular
-        </button>
-    );
-}
 
 describe("Teste de menu superior", () => {
     describe("Botão entrar", () => {
