@@ -13,7 +13,18 @@ export const autenticacaoContextConsumer = (estado) => {
     );
 }
 
+export const BotaoSimular = ({value}) => {
+    return (
+        <button
+            data-testid="botao-simular"
+            onClick={() => value.adicionaDadosUsuario(usuarioAutenticacao)}
+        >
+            Simular
+        </button>
+    );
+}
+
 export const usuarioAutenticacao = {
-  nome: faker.name.firstName(),
-  email: faker.internet.email(),
+    id: faker.datatype.number({min: 1}),
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOjEsImlhdCI6MTUxNjIzOTAyMn0.X_M6O0tdAGnnqqYoV_Q4xQZeG58gth-PG7KSW96tsic"
 };
