@@ -1,11 +1,7 @@
 import React from "react";
 import {fireEvent, render} from "@testing-library/react";
 import MenuSuperior from "./MenuSuperior";
-import {
-    autenticacaoContextConsumer,
-    BotaoSimular,
-    usuarioAutenticacao
-} from "../../test-utils/autenticacao-context-consumer";
+import {autenticacaoContextConsumer, BotaoSimular,} from "../../test-utils/autenticacao-context-consumer";
 
 let menuClick = jest.fn();
 
@@ -37,8 +33,8 @@ describe("Teste de menu superior", () => {
 
     describe("Botão sair", () => {
         it("Não deve existir o botão sair se o usuário não estiver logado", () => {
-           const {queryByTestId} = render(<MenuSuperior/>);
-           expect(queryByTestId("botao-sair")).not.toBeInTheDocument();
+            const {queryByTestId} = render(<MenuSuperior/>);
+            expect(queryByTestId("botao-sair")).not.toBeInTheDocument();
         });
 
         it("Deve exibir o botão sair quando o usuário estiver logado", () => {
