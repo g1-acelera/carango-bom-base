@@ -59,12 +59,12 @@ describe("Autenticação context testes", () => {
                         <button onClick={() => value.adicionaDadosUsuario(usuarioAutenticacao)}>
                             Entrar
                         </button>
-                        <span>Id: {value.dadosUsuario?.id}</span>
+                        <span>Token: {value.dadosUsuario?.token}</span>
                     </>
                 )
             );
             fireEvent.click(getByText("Entrar"));
-            expect(getByText(`Id: ${usuarioAutenticacao.id}`)).toBeTruthy();
+            expect(getByText(`Token: ${usuarioAutenticacao.token}`)).toBeTruthy();
         });
 
         it("Deve limpar os dados do usuário", () => {
@@ -73,15 +73,13 @@ describe("Autenticação context testes", () => {
                     <>
                         <button onClick={() => value.adicionaDadosUsuario()}>Entrar</button>
                         <button onClick={value.removeDadosUsuario}>Sair</button>
-                        <span>Nome: {value.dadosUsuario?.nome}</span>
-                        <span>Email: {value.dadosUsuario?.email}</span>
+                        <span>Token: {value.dadosUsuario?.token}</span>
                     </>
                 )
             );
             fireEvent.click(getByText("Entrar"));
             fireEvent.click(getByText("Sair"));
-            expect(getByText("Nome:")).toBeTruthy();
-            expect(getByText("Email:")).toBeTruthy();
+            expect(getByText("Token:")).toBeTruthy();
         });
     });
 });
