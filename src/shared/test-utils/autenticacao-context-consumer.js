@@ -25,6 +25,6 @@ export const BotaoSimular = ({value}) => {
 }
 
 export const usuarioAutenticacao = {
-    id: faker.datatype.number({min: 1}),
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOjEsImlhdCI6MTUxNjIzOTAyMn0.X_M6O0tdAGnnqqYoV_Q4xQZeG58gth-PG7KSW96tsic"
+    tipo: "admin",
+    token: "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgdmVuZGEgZGUgdmVpY3Vsb3MiLCJzdWIiOiIxIiwiaWF0IjoxNjI3OTE1MDQ2LCJleHAiOjE2MjgwMDE0NDZ9.WLLBTcnC9WHAonY5pn2iGG6r-AMa1U_kcTHWAntTJGQ"
 };

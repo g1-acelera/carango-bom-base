@@ -5,22 +5,17 @@ import {
     setDadosUsuarioLocalStorage,
     usuarioIdLocalStorage
 } from "./local-storage";
-
-let dadosUsuario;
+import {usuarioAutenticacao} from "../test-utils/autenticacao-context-consumer";
 
 beforeEach(() => {
-    dadosUsuario = {
-        tipo: "admin",
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOjEsImlhdCI6MTUxNjIzOTAyMn0.X_M6O0tdAGnnqqYoV_Q4xQZeG58gth-PG7KSW96tsic"
-    };
     setDadosUsuarioLocalStorage(null);
 });
 
 describe("Local storage testes", () => {
     describe("Dados usuário", () => {
         it("Deve adicionar os dados do usuário", () => {
-            setDadosUsuarioLocalStorage(dadosUsuario);
-            expect(getDadosUsuarioLocalStorage()).toStrictEqual(dadosUsuario);
+            setDadosUsuarioLocalStorage(usuarioAutenticacao);
+            expect(getDadosUsuarioLocalStorage()).toStrictEqual(usuarioAutenticacao);
         });
 
         it('Deve retornar null quando não houver dados de usuário', () => {
@@ -28,8 +23,8 @@ describe("Local storage testes", () => {
         });
 
         it("Deve retornar o id do usuário", () => {
-            setDadosUsuarioLocalStorage(dadosUsuario);
-            expect(usuarioIdLocalStorage()).toBe(1);
+            setDadosUsuarioLocalStorage(usuarioAutenticacao);
+            expect(usuarioIdLocalStorage()).toBe("1");
         });
 
         it("Deve retornar vazio quando não houver id do usuário", () => {
@@ -37,7 +32,7 @@ describe("Local storage testes", () => {
         });
 
         it("Deve limpar os dados armazenados do usuário (limpaDadosUsuarioLocalStorage)", () => {
-            setDadosUsuarioLocalStorage(dadosUsuario);
+            setDadosUsuarioLocalStorage(usuarioAutenticacao);
             limpaDadosUsuarioLocalStorage();
             expect(getDadosUsuarioLocalStorage()).toBeNull();
         });
@@ -45,7 +40,7 @@ describe("Local storage testes", () => {
 
     describe("Login Usuário", () =>  {
         it("Deve estar logado", () => {
-            setDadosUsuarioLocalStorage(dadosUsuario);
+            setDadosUsuarioLocalStorage(usuarioAutenticacao);
             expect(estaLogadoLocalStorage()).toBeTruthy();
         });
 
