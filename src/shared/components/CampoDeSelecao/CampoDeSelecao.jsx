@@ -24,7 +24,8 @@ function CampoDeSelecao({
   return (
     <FormControl fullWidth variant="outlined" required className={className}>
       <InputLabel id="demo-simple-select-required-label">{label}</InputLabel>
-      <Select      
+      <Select
+        data-testid="select-test-id"      
         id={id}
         name={name}
         value={value}

@@ -13,6 +13,7 @@ const BotaoDetalhes = ({salvarDesabilidato}) => {
     return (
         <div className='buttonContainer' style={{ display: "flex", justifyContent: "space-between"}}>
             <BotaoSalvar
+                data-testid="btnSalvar"
                 variant="contained"
                 color="primary"
                 type="submit"
@@ -23,6 +24,7 @@ const BotaoDetalhes = ({salvarDesabilidato}) => {
             </BotaoSalvar>
 
             <BotaoCancelar
+                data-testid="btnCancelar"
                 variant="contained"
                 color="secondary"
                 onClick={cancelar}

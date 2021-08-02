@@ -13,7 +13,7 @@ function CampoDeTexto({
 }) {
     return (
         <TextField
-            data-testid="text-field"
+            data-testid={`${id}-text-field`}
             id={id}
             type="text"
             name={name}

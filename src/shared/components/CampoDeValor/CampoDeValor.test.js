@@ -2,7 +2,6 @@ import "../../../config-test/config-test";
 import {shallow} from "enzyme";
 import CampoDeValor from "./CampoDeValor";
 import TextField from "@material-ui/core/TextField";
-import Veiculo from "../../models/Veiculo";
 
 const onChange = jest.fn();
 const idProperty = "#test_field";

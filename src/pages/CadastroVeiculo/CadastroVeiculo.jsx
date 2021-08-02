@@ -54,6 +54,7 @@ function CadastroVeiculo() {
           value={valores?.value}
           onChange={atualizaValor}
           name="valor"
+          data-testid="veiculo-valor-text-field"
           id="formatted-numberformat-input"
           InputProps={{
             inputComponent: CampoDeValor,
