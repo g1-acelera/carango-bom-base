@@ -38,7 +38,7 @@ function CadastroVeiculo() {
       <Formulario
         cadastroServico={VeiculoService.cadastrar}
         alteraServico={VeiculoService.alterar}
-        ehValido={Veiculo.ehVeiculoValido()}
+        ehValido={Veiculo.ehVeiculoValido(valores)}
         valores={valores}>
 
         <CampoDeTexto
