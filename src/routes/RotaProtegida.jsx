@@ -7,9 +7,12 @@ import ROTAS from "../shared/constants/rotas.const";
 const RotaProtegida = ({rest, path, component, children}) => {
     const {ehUsuarioLogado} = useAutenticacaoContext();
 
+    if (!ehUsuarioLogado) {
+        return <Redirect to={{pathname: ROTAS.VEICULOS}}/>;
+    }
+
     return (
         <>
-            {!ehUsuarioLogado && <Redirect to={ROTAS.VEICULOS}/>}
             {
                 ehUsuarioLogado &&
                 <Route {...rest} path={path} component={component}>
