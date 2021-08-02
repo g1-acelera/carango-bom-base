@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 CampoDeValor.propTypes = {
   inputRef: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 function CampoDeValor(props) {
@@ -19,7 +19,7 @@ function CampoDeValor(props) {
         onChange({
           target: {
             name: "valor",
-            value: values.value,
+            value: values.floatValue,
           },
         });
       }}

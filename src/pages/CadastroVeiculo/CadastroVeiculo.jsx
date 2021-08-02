@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 
+import { makeStyles } from '@material-ui/core/styles';
 import VeiculoService from "../../services/VeiculoService";
 import Veiculo from "../../shared/models/Veiculo";
 
@@ -14,25 +15,23 @@ import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSeleca
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
 
+const useStyles = makeStyles((theme) => ({
+  divSpace: {
+    marginTop: '20px',
+  },
+  divPadding: {
+    paddingTop: '20px',
+  },
+}));
+
 
 function CadastroVeiculo() {
-
+  const classes = useStyles();
   const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
   const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
-  const [value,
-    setValue] = React.useState(0);
 
   useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
 
-  const handleChange = (event) => {
-    setValores({
-      ...value.value,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-
-  
 
   return (
     <h1>Cadastrar Veículo
@@ -44,28 +43,26 @@ function CadastroVeiculo() {
 
         <CampoDeTexto
           id="veiculo-modelo"
-          name="modelo"
+          name="nome"
           label="Modelo"
           value={valores
-          ?.modelo || ""}
-          error={Veiculo.validacoesNome(valores
-          ?.modelo)}
+          ?.nome || ""}
           required={true}
           onChange={atualizaValor}/>
 
         <TextField
           value={valores?.value}
-          onChange={handleChange}
-          name="numberformat"
+          onChange={atualizaValor}
+          name="valor"
           id="formatted-numberformat-input"
           InputProps={{
             inputComponent: CampoDeValor,
           }}
-          error={Veiculo.validacaoValor(value?.value)}
           variant="outlined"
-          label="Valor"
+          label="valor"
           required={true}
           fullWidth
+          className={classes.divSpace}
         />
 
         <CampoDeTexto
@@ -74,8 +71,6 @@ function CadastroVeiculo() {
           label="Ano"
           value={valores
           ?.ano || ""}
-          error={Veiculo.validacoesNome(valores
-          ?.ano)}
           required={true}
           onChange={atualizaValor}/>
 
@@ -86,10 +81,11 @@ function CadastroVeiculo() {
           ?.marcaId || ""}
           label="Marca"
           fullWidth
-          onChange={atualizaValor}></CampoDeSelecao>
+          onChange={atualizaValor}
+          className={classes.divSpace}></CampoDeSelecao>
 
         <BotaoDetalhes
-          salvarDesabilidato={Veiculo.ehVeiculoValido(valores)}/>
+          salvarDesabilidato={!Veiculo.ehVeiculoValido(valores)}/>
       </Formulario>
     </h1>
   );

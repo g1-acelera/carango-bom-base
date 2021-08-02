@@ -19,13 +19,12 @@ class Veiculo {
 
     static validacaoValor(valorDoCampo) {
         const obrigatorio = validaObrigatoriedade(valorDoCampo)
-        if (obrigatorio === "")
-            return false
-        return true
+        return obrigatorio
     }
 
     static ehVeiculoValido(valores) {
-        return !!this.validacoesNome(valores?.modelo);
+        return !this.validacoesNome(valores?.nome) && !validaObrigatoriedade(valores?.marcaId) 
+        && !validaObrigatoriedade(valores?.valor) && !validaObrigatoriedade(valores?.ano);
     }
 }
 

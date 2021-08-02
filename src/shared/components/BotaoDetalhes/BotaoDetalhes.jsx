@@ -11,12 +11,13 @@ const BotaoDetalhes = ({salvarDesabilidato}) => {
     }
 
     return (
-        <div className='buttonContainer'>
+        <div className='buttonContainer' style={{ display: "flex", justifyContent: "space-between"}}>
             <BotaoSalvar
                 variant="contained"
                 color="primary"
                 type="submit"
                 disabled={salvarDesabilidato}
+                style={{ marginTop: '20px'}}
             >
                 {id ? 'Alterar' : 'Cadastrar'}
             </BotaoSalvar>
@@ -24,7 +25,8 @@ const BotaoDetalhes = ({salvarDesabilidato}) => {
             <BotaoCancelar
                 variant="contained"
                 color="secondary"
-                onClick={cancelar}>
+                onClick={cancelar}
+                style={{ marginTop: '20px'}}>
                 Cancelar
             </BotaoCancelar>
         </div>
