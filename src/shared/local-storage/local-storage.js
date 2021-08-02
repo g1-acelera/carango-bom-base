@@ -21,5 +21,5 @@ export function limpaDadosUsuarioLocalStorage() {
 export function usuarioIdLocalStorage() {
     if (!getDadosUsuarioLocalStorage()) return;
     const data = jwt_decode(getDadosUsuarioLocalStorage().token);
-    return data.id;
+    return data.sub;
 }
