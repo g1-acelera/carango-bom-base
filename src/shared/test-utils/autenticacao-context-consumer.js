@@ -1,5 +1,4 @@
 import {render} from "@testing-library/react";
-import faker from "faker";
 import AutenticacaoProvider, {AutenticacaoContext} from "../context/autenticacao.context";
 import React from "react";
 
