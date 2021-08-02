@@ -14,7 +14,7 @@ const MenuLateralContainer = () => {
         <>
             <MenuLateral>
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path={ROTAS.INICIAL}>
                         <Redirect to={ROTAS.DASHBOARD}/>
                     </Route>
                     <Route path={ROTAS.DASHBOARD} component={Dashboard}/>
