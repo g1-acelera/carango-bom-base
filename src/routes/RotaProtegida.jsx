@@ -4,13 +4,18 @@ import {Redirect, Route} from "react-router-dom";
 import {useAutenticacaoContext} from "../shared/context/autenticacao.context";
 import ROTAS from "../shared/constants/rotas.const";
 
-const RotaProtegida = ({rest, path, component}) => {
+const RotaProtegida = ({rest, path, component, children}) => {
     const {ehUsuarioLogado} = useAutenticacaoContext();
 
     return (
         <>
             {!ehUsuarioLogado && <Redirect to={ROTAS.VEICULOS}/>}
-            {ehUsuarioLogado && <Route {...rest} path={path} component={component}/>}
+            {
+                ehUsuarioLogado &&
+                <Route {...rest} path={path} component={component}>
+                    {children}
+                </Route>
+            }
         </>
     );
 };
