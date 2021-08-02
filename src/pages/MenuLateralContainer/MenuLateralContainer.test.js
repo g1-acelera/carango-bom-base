@@ -1,13 +1,13 @@
 import React, {Suspense} from "react";
 import {render, waitFor} from "@testing-library/react";
 import {MemoryRouter} from "react-router";
-
-import MenuLateralContainer from "./MenuLateralContainer";
 import Dashboard from "../Dashboard/Dashboard";
 import CadastroMarca from "../CadastroMarca/CadastroMarca";
 import ListagemMarcas from "../ListagemMarca/ListagemMarcas";
 import ListagemVeiculos from "../ListagemVeiculos/ListagemVeiculos";
 import ROTAS from "../../shared/constants/rotas.const";
+import MenuLateralContainer from "./MenuLateralContainer";
+import {AutenticacaoProviderMock} from "../../shared/test-utils/autenticacao-context-consumer";
 
 jest.mock("../Dashboard/Dashboard");
 jest.mock("../CadastroMarca/CadastroMarca");
@@ -16,11 +16,13 @@ jest.mock("../ListagemVeiculos/ListagemVeiculos");
 
 const ComponenteContainer = (rotaInicial) => {
     return render(
-        <Suspense fallback={<></>}>
-            <MemoryRouter initialEntries={[rotaInicial]}>
-                <MenuLateralContainer/>
-            </MemoryRouter>
-        </Suspense>
+        <AutenticacaoProviderMock>
+            <Suspense fallback={<></>}>
+                <MemoryRouter initialEntries={[rotaInicial]}>
+                    <MenuLateralContainer/>
+                </MemoryRouter>
+            </Suspense>
+        </AutenticacaoProviderMock>
     );
 };
 
