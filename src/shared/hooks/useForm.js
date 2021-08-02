@@ -1,14 +1,14 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
-const useForm = (initialValues) => {
-    const [valores, setValores] = useState({...initialValues});
-    function atualizaValor(event) {
-        const {name, value} = event.target;
+const useForm = (valoresIniciais) => {
+    const [valores, setValores] = useState({...valoresIniciais});
+    const atualizaValor = useCallback((event) => {
+        const {name, value} = event;
         setValores({
             ...valores,
             [name]: value
         });
-    }
+    }, [setValores, valores]);
     return {atualizaValor, valores, setValores};
 };
 
