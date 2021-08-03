@@ -2,12 +2,12 @@ import React from "react";
 import {AppBar, IconButton, Toolbar} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import {BotaoEntrar, BotaoSair} from "../../../@material/Button";
-import sidebarStyles from "../../../@material/Sidebar";
+import SidebarStyles from "../../../@material/SidebarStyles";
 import {useAutenticacaoContext} from "../../context/autenticacao.context";
 
 const MenuSuperior = ({menuClick}) => {
     const {ehUsuarioLogado} = useAutenticacaoContext();
-    const classes = sidebarStyles();
+    const classes = SidebarStyles();
 
     return (
         <AppBar position="fixed" className={`${classes.appBar}`}>

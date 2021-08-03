@@ -1,6 +1,4 @@
 import React, {useEffect} from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
 import VeiculoService from "../../services/VeiculoService";
 import Veiculo from "../../shared/models/Veiculo";
 
@@ -14,19 +12,9 @@ import CampoDeValor from '../../shared/components/CampoDeValor/CampoDeValor';
 import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSelecao';
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
-
-const useStyles = makeStyles((theme) => ({
-  divSpace: {
-    marginTop: '20px',
-  },
-  divPadding: {
-    paddingTop: '20px',
-  },
-}));
-
+import { espacamentos } from '../../@material/CamposDeTexto';
 
 function CadastroVeiculo() {
-  const classes = useStyles();
   const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
   const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
 
@@ -63,7 +51,7 @@ function CadastroVeiculo() {
           label="valor"
           required={true}
           fullWidth
-          className={classes.divSpace}
+          className={espacamentos}
         />
 
         <CampoDeTexto
@@ -83,7 +71,7 @@ function CadastroVeiculo() {
           label="Marca"
           fullWidth
           onChange={atualizaValor}
-          className={classes.divSpace}></CampoDeSelecao>
+          className={espacamentos}></CampoDeSelecao>
 
         <BotaoDetalhes
           salvarDesabilidato={!Veiculo.ehVeiculoValido(valores)}/>

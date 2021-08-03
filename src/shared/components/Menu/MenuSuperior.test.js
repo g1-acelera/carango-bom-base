@@ -16,12 +16,12 @@ beforeEach(() => {
 describe("Teste de menu superior", () => {
     describe("Botão entrar", () => {
         it("Deve existir o botao de entrar se o usuario nao tiver logado", () => {
-            const botaoEntrar = screen.getByTestId("botao-entrar");
+            botaoEntrar = screen.getByTestId("botao-entrar");
             expect(botaoEntrar).toBeDefined();
         });
 
         it("Deve possuir o texto 'Entrar' se o usuario nao tiver logado", () => {
-            const botaoEntrar = screen.getByTestId("botao-entrar");
+            botaoEntrar = screen.getByTestId("botao-entrar");
             expect(botaoEntrar).toHaveTextContent(/Entrar/i);
         });
     });
