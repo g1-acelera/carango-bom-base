@@ -8,11 +8,13 @@ import ListagemVeiculos from "../ListagemVeiculos/ListagemVeiculos";
 import ROTAS from "../../shared/constants/rotas.const";
 import MenuLateralContainer from "./MenuLateralContainer";
 import {AutenticacaoProviderMock} from "../../shared/test-utils/autenticacao-context-consumer";
+import PaginaNaoEncontrada from "../PaginaNaoEncontrada/PaginaNaoEncontrada";
 
 jest.mock("../Dashboard/Dashboard");
 jest.mock("../CadastroMarca/CadastroMarca");
 jest.mock("../ListagemMarca/ListagemMarcas");
 jest.mock("../ListagemVeiculos/ListagemVeiculos");
+jest.mock("../PaginaNaoEncontrada/PaginaNaoEncontrada");
 
 const ComponenteContainer = (rotaInicial) => {
     return render(
@@ -59,6 +61,13 @@ describe("Menu lateral container testes", () => {
         ListagemVeiculos.mockImplementation(() => <div>Listagem de veículos mock</div>);
         const {getByText} = ComponenteContainer(ROTAS.VEICULOS);
         const titulo = await waitFor(() => getByText(/Listagem de veículos mock/i));
+        expect(titulo).toBeInTheDocument();
+    });
+
+    it("Deve navegar para página não encontrada", async () => {
+        PaginaNaoEncontrada.mockImplementation(() => <div>Página não encontrada mock</div>);
+        const {getByText} = ComponenteContainer("/essa-rota-nao-existe");
+        const titulo = await waitFor(() => getByText(/Página não encontrada mock/i));
         expect(titulo).toBeInTheDocument();
     });
 });

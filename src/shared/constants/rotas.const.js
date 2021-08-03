@@ -6,6 +6,7 @@ const ROTAS = {
     VEICULOS: "/listagem-veiculos",
     DASHBOARD: "/dashboard",
     LOGIN: "/login",
+    NAO_ENCONTRADO: "**",
 };
 
 export default ROTAS;
