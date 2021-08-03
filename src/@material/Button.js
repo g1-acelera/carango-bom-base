@@ -18,7 +18,7 @@ export const fabStyles = makeStyles(() => ({
     }
 }));
 
-export const BotaoSalvar = withStyles({
+export const BotaoPrincipal = withStyles({
     root: {
         backgroundColor: pink[400],
         borderRadius: '20px',
@@ -28,6 +28,11 @@ export const BotaoSalvar = withStyles({
             backgroundColor: '',
             borderColor: 'none',
             boxShadow: 'none',
+        },
+        '&:disabled': {
+            backgroundColor: "var(--desabilitado)",
+            color: "var(--texto-secundario)",
+            boxShadow: "none",
         },
     },
 })(Button);
