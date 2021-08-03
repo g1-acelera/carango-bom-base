@@ -1,11 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Veiculos from '../../services/VeiculoService';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { Fragment } from 'react';
-import NumberFormat from 'react-number-format';
-import Style from './Dashboard.module.css';
+import Cards from '../../shared/components/Cards/Cards'
 
 const Dashboard = () => {
     const [veiculos, setVeiculos] = useState();
@@ -26,26 +21,9 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <Fragment>
-                {veiculos && veiculos.map((veiculo) => (
-                    <Card key={veiculo.marca} className={Style.cardPrincipal}>
-                        <CardContent>
-                        <Typography className={Style.cardTitulo} color="textSecondary" gutterBottom>
-                            Marca
-                        </Typography>
-                        <Typography variant="h5" component="h2">
-                            {veiculo.marca}
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                          {veiculo.data.length} quantidade(s)
-                          <br />
-                          <NumberFormat value={veiculo.data.reduce((accumulator, current) => accumulator + current, 0)} 
-                              displayType={'text'} decimalSeparator="," thousandSeparator="." prefix="R$" />
-                        </Typography>
-                        </CardContent>
-                    </Card>)
-        )}
-        </Fragment>);
+        <div data-testid="divDashboard">
+               <Cards veiculos={veiculos}/>
+        </div>);
 }
 
 export default Dashboard;

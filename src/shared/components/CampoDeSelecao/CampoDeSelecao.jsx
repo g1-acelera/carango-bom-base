@@ -32,7 +32,7 @@ function CampoDeSelecao({
         onChange={onChange}
         label={label}
       >
-        {marcas && marcas.map((marca) =>  (
+        {marcas && marcas !== undefined && marcas.map((marca) =>  (
          <MenuItem key={marca.id} value={marca.id}>
         {marca.nome}
         </MenuItem>
