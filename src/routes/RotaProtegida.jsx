@@ -4,7 +4,7 @@ import {Redirect, Route} from "react-router-dom";
 import {useAutenticacaoContext} from "../shared/context/autenticacao.context";
 import ROTAS from "../shared/constants/rotas.const";
 
-const RotaProtegida = ({rest, path, component, children}) => {
+const RotaProtegida = ({rest, path, component}) => {
     const {ehUsuarioLogado} = useAutenticacaoContext();
 
     if (!ehUsuarioLogado) {
@@ -15,9 +15,7 @@ const RotaProtegida = ({rest, path, component, children}) => {
         <>
             {
                 ehUsuarioLogado &&
-                <Route {...rest} path={path} component={component}>
-                    {children}
-                </Route>
+                <Route {...rest} path={path} component={component}/>
             }
         </>
     );
