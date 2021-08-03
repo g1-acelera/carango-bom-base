@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
+
 function CampoDeTexto({
   id,
   name,
@@ -12,7 +13,7 @@ function CampoDeTexto({
 }) {
     return (
         <TextField
-            data-testid="text-field"
+            data-testid={`${id}-text-field`}
             id={id}
             type="text"
             name={name}
@@ -23,6 +24,7 @@ function CampoDeTexto({
             onChange={onChange}
             required={required}
             fullWidth
+            style={{ marginTop: '20px'}}
         />
     );
 }
