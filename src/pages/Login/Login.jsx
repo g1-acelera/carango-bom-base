@@ -22,7 +22,7 @@ const Login = () => {
         event.preventDefault();
         LoginService.login(valores)
             .then(res => {
-                adicionaDadosUsuario(res.body());
+                adicionaDadosUsuario(res);
                 history.push(ROTAS.DASHBOARD);
             })
             .catch(() => setSnackbarAberto(true));
