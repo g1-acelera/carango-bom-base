@@ -9,13 +9,14 @@ function CampoDeTexto({
   label,
   error,
   onChange,
+  type = "text",
   required = false
 }) {
     return (
         <TextField
             data-testid={`${id}-text-field`}
             id={id}
-            type="text"
+            type={type}
             name={name}
             label={label}
             value={value}

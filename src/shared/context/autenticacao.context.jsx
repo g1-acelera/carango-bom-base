@@ -1,25 +1,31 @@
 import {createContext, useContext, useState} from "react";
-import {estaLogado} from "../local-storage/local-storage";
+import {
+    estaLogadoLocalStorage,
+    limpaDadosUsuarioLocalStorage,
+    setDadosUsuarioLocalStorage
+} from "../local-storage/local-storage";
 
 export const AutenticacaoContext = createContext({
     dadosUsuario: {},
-    ehUsuarioLogado: estaLogado(),
+    ehUsuarioLogado: estaLogadoLocalStorage(),
     adicionaDadosUsuario: () => {},
     removeDadosUsuario: () => {},
 });
 
 const AutenticacaoProvider = ({children}) => {
     const [dadosUsuario, setDadosUsuario] = useState(undefined);
-    const [ehUsuarioLogado, setEhUsuarioLogado] = useState(estaLogado());
+    const [ehUsuarioLogado, setEhUsuarioLogado] = useState(estaLogadoLocalStorage());
 
     function adicionaDadosUsuario(dadosAdicionarUsuario) {
         setEhUsuarioLogado(true);
         setDadosUsuario(dadosAdicionarUsuario);
+        setDadosUsuarioLocalStorage(dadosAdicionarUsuario);
     }
 
     function removeDadosUsuario() {
         setEhUsuarioLogado(false);
         setDadosUsuario(undefined);
+        limpaDadosUsuarioLocalStorage();
     }
 
     return (

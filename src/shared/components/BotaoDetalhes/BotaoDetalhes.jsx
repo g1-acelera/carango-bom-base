@@ -1,8 +1,9 @@
-import {BotaoCancelar, BotaoSalvar} from "../../../@material/Button";
 import React from "react";
 import {useHistory, useParams} from "react-router";
 
-const BotaoDetalhes = ({salvarDesabilidato}) => {
+import {BotaoCancelar, BotaoPrincipal} from "../../../@material/Button";
+
+const BotaoDetalhes = ({salvarDesabilitado}) => {
     const {id} = useParams();
     const history = useHistory();
 
@@ -12,16 +13,16 @@ const BotaoDetalhes = ({salvarDesabilidato}) => {
 
     return (
         <div className='buttonContainer' style={{ display: "flex", justifyContent: "space-between"}}>
-            <BotaoSalvar
+            <BotaoPrincipal
                 data-testid="btnSalvar"
                 variant="contained"
                 color="primary"
                 type="submit"
-                disabled={salvarDesabilidato}
+                disabled={salvarDesabilitado}
                 style={{ marginTop: '20px'}}
             >
                 {id ? 'Alterar' : 'Cadastrar'}
-            </BotaoSalvar>
+            </BotaoPrincipal>
 
             <BotaoCancelar
                 data-testid="btnCancelar"
