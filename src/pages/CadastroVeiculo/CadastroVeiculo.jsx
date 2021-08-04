@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useEffect, useState} from 'react';
 import VeiculoService from "../../services/VeiculoService";
+import MarcaService from '../../services/MarcaService';
 import Veiculo from "../../shared/models/Veiculo";
 
 import Formulario from "../../shared/components/Formulario/Formulario";
@@ -15,22 +14,18 @@ import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSeleca
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-  divSpace: {
-    marginTop: '20px',
-  },
-  divPadding: {
-    paddingTop: '20px',
-  },
-}));
-
-
 function CadastroVeiculo() {
-  const classes = useStyles();
   const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
   const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
+  const [marcas, setMarcas] = useState();
 
-  useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
+  useEffect(() => {
+    setValores(dadosConsultados)
+    MarcaService.listar()
+    .then(dados => { 
+      setMarcas(dados)
+    });
+  }, [dadosConsultados, setValores]);
 
 
   return (
@@ -63,7 +58,6 @@ function CadastroVeiculo() {
           label="valor"
           required={true}
           fullWidth
-          className={classes.divSpace}
         />
 
         <CampoDeTexto
@@ -83,7 +77,7 @@ function CadastroVeiculo() {
           label="Marca"
           fullWidth
           onChange={atualizaValor}
-          className={classes.divSpace}></CampoDeSelecao>
+          dados={marcas}></CampoDeSelecao>
 
         <BotaoDetalhes
           salvarDesabilidato={!Veiculo.ehVeiculoValido(valores)}/>

@@ -12,9 +12,9 @@ const AutenticacaoProvider = ({children}) => {
     const [dadosUsuario, setDadosUsuario] = useState(undefined);
     const [ehUsuarioLogado, setEhUsuarioLogado] = useState(estaLogado());
 
-    function adicionaDadosUsuario(dadosUsuario) {
+    function adicionaDadosUsuario(dadosAdicionarUsuario) {
         setEhUsuarioLogado(true);
-        setDadosUsuario(dadosUsuario);
+        setDadosUsuario(dadosAdicionarUsuario);
     }
 
     function removeDadosUsuario() {

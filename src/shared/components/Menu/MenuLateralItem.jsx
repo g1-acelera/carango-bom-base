@@ -1,11 +1,11 @@
 import React from "react";
 import {Divider, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import MENU_ITEM from "./constants/menu-item.const";
-import sidebarStyles from "../../../@material/Sidebar";
+import SidebarStyles from "../../../@material/SidebarStyles";
 import {NavLink} from "react-router-dom";
 
 const MenuLateralItem = () => {
-    const classes = sidebarStyles();
+    const classes = SidebarStyles();
 
     return (
         <>
