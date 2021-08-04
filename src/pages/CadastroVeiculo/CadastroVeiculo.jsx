@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from "react-router-dom";
+
 import VeiculoService from "../../services/VeiculoService";
 import MarcaService from '../../services/MarcaService';
 import Veiculo from "../../shared/models/Veiculo";
-import {useHistory} from "react-router-dom";
+
 import Formulario from "../../shared/components/Formulario/Formulario";
 import useForm from "../../shared/hooks/useForm";
-
 import useConsultaEntidade from "../../shared/hooks/useConsultaEntidade";
 
 import CampoDeTexto from '../../shared/components/CampoDeTexto/CampoDeTexto';
@@ -13,6 +14,7 @@ import CampoDeValor from '../../shared/components/CampoDeValor/CampoDeValor';
 import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSelecao';
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
+
 import ROTAS from "../../shared/constants/rotas.const";
 
 function CadastroVeiculo() {
