@@ -40,12 +40,15 @@ const SidebarStyles = makeStyles((theme) => ({
         border: "none"
     },
     content: {
-        // flexGrow: 1,
-        // padding: theme.spacing(3),
+        width: "100%",
         display: "flex",
+        alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
         marginLeft: "240px",
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: "0",
+        },
     },
 }));
 
