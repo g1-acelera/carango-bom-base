@@ -20,6 +20,7 @@ const MenuLateralContainer = () => {
                 <RotaProtegida path={ROTAS.CADASTRO_MARCA} component={CadastroMarca}/>
                 <RotaProtegida path={ROTAS.ALTERACAO_MARCA} component={CadastroMarca}/>
                 <RotaProtegida path={ROTAS.MARCAS} component={ListagemMarcas}/>
+                <RotaProtegida path={ROTAS.CADASTRO_VEICULO} component={CadastroVeiculo}/>
                 <Route path={ROTAS.VEICULOS} component={ListagemVeiculos}/>
                 <Route path={ROTAS.NAO_ENCONTRADO} exact component={PaginaNaoEncontrada}/>
             </Switch>

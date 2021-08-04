@@ -13,7 +13,7 @@ import ROTAS from "../../shared/constants/rotas.const";
 import Alert from "../../shared/components/Alert/Alert";
 
 const Login = () => {
-    const [snackbarAberto, setSnackbarAberto] = useState(true);
+    const [snackbarAberto, setSnackbarAberto] = useState(false);
     const history = useHistory();
     const {adicionaDadosUsuario} = useAutenticacaoContext();
     const {atualizaValor, valores} = useForm(LoginModelo.valoresIniciais());
