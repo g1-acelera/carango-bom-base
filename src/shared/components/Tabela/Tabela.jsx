@@ -2,19 +2,52 @@ import React from "react"
 import { useTable, useSortBy, useFilters, useGlobalFilter } from "react-table"
 
 import Table from "@material-ui/core/Table"
+import TableRow from "@material-ui/core/TableRow"
+import TableHead from "@material-ui/core/TableHead"
+import TableBody from "@material-ui/core/TableBody"
+import TableCell from "@material-ui/core/TableCell"
+import InputBase from "@material-ui/core/InputBase"
+import Typography from "@material-ui/core/Typography"
+import SearchIcon from "@material-ui/icons/Search"
 import TableContainer from "@material-ui/core/TableContainer"
 import { makeStyles } from "@material-ui/core/styles"
+import NumberFormat from "react-number-format"
 
-import Cabecalho from "./Cabecalho"
-import Corpo from "./Corpo"
+import ColunaDeAcoes from "./ColunaDeAcoes"
 
 const tableStyles = makeStyles((theme) => ({
   container: {
     width: "calc(100vw - 240px)"
-  }
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    marginLeft: 0,
+    width: "100%",
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: 200,
+    },
+  },
 }))
 
-export default function Tabela({ columns, data, colunaDeAcoes}) {
+export default function Tabela({ columns, data, colunaDeAcoes, service, caminhoDoObjeto }) {
   const {
     headerGroups,
     rows,
@@ -31,20 +64,72 @@ export default function Tabela({ columns, data, colunaDeAcoes}) {
 
   const styles = tableStyles()
 
+  function renderCell(cell) {
+    const valor = cell.value
+    const tipo = cell.column.type
+
+    if (tipo === "currency") return ( <NumberFormat value={valor}
+                                                    displayType={'text'}
+                                                    decimalSeparator="."
+                                                    thousandSeparator=","
+                                                    prefix="R$ "/> )
+
+    return cell.value
+  }
+
   return (
     <TableContainer className={styles.container}>
-      <Table>
-        <Cabecalho
-          headerGroups={headerGroups}
-          preFilteredRows={preFilteredRows}
-          setGlobalFilter={setGlobalFilter}
-          globalFilter={state.globalFilter}
+      <SearchIcon/>
+        <InputBase
+          data-testid="filtro-global"
+          value={state.globalFilter || ""}
+          onChange={(e) => {setGlobalFilter(e.target.value || undefined)}}
+          placeholder={`${preFilteredRows.length} records...`}
+          classes={{
+            root: styles.inputRoot,
+            input: styles.inputInput,
+          }}
+          inputProps={{ "aria-label": "search" }}
         />
-        <Corpo
-          rows={rows}
-          prepareRow={prepareRow}
-          colunaDeAcoes={colunaDeAcoes}
-        />
+      <Table data-testid="tabela">
+        <TableHead>
+          {headerGroups.map((headerGroup) => (
+          <TableRow {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column, i) => (
+              <TableCell data-testid={"coluna-"+i} {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <Typography variant="h6">
+                  {column.render("header")}
+                </Typography>
+              </TableCell>
+            ))}
+            {colunaDeAcoes ? <TableCell><Typography variant="h6">Ações</Typography></TableCell> : ""}
+          </TableRow>
+          ))}
+        </TableHead>
+        <TableBody>
+          {rows.map((row, i) => {
+            prepareRow(row)
+            return (
+              <TableRow data-testid={"linha-"+i} {...row.getRowProps()}>
+                {row.cells.map((cell, j) => {
+                  return (
+                    <TableCell data-testid={"linha-"+i+"-coluna-"+j} {...cell.getCellProps()}>
+                        {renderCell(cell)}
+                    </TableCell>
+                  )
+                })}
+                {
+                  colunaDeAcoes ? <ColunaDeAcoes
+                                    data-testid={"acoes-" + i} 
+                                    object_id = {row.original.id}
+                                    service={service}
+                                    caminhoDoObjeto={caminhoDoObjeto} 
+                                  /> : ""
+                }
+              </TableRow>
+            )
+          })}
+        </TableBody>
       </Table>
     </TableContainer>
   )

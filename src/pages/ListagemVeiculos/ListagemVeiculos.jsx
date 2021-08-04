@@ -37,6 +37,9 @@ export default function ListagemVeiculos() {
     <Tabela 
       columns={colunas} 
       data={veiculos}
-      colunaDeAcoes={true} />
+      colunaDeAcoes={true}
+      service={VeiculoService}
+      caminhoDoObjeto="/veiculos"
+    />
   )
 }

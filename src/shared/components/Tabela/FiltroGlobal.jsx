@@ -42,10 +42,8 @@ export default function FiltroGlobal({
   const count = preFilteredRows.length
 
   return (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
-      </div>
+    <>
+      <SearchIcon />
       <InputBase
         value={globalFilter || ""}
         onChange={(e) => {
@@ -58,6 +56,6 @@ export default function FiltroGlobal({
         }}
         inputProps={{ "aria-label": "search" }}
       />
-    </div>
+    </>
   )
 }

@@ -1,27 +1,40 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 
+import {Button} from '@material-ui/core'
 import TableCell from "@material-ui/core/TableCell"
-import {Button} from '@material-ui/core';
 
-export default function ColunaDeAcoes() {
+export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
+    const history = useHistory();
+
+    function alterar(id) {
+        history.push(caminhoDoObjeto + "/" + id)
+    }
+
+    function excluir(id) {
+        service.excluir(id)
+            .then(() => {history.go(0)})
+    }
+
     return (
         <TableCell>
-            <div className="">
                 <Button
                     className=""
+                    id="1-botao-excluir"
+                    data-testid="botao-excluir"
                     variant="contained"
                     color="secondary"
-                    onClick="">
+                    onClick={() => excluir(object_id)}>
                     Excluir
                 </Button>
                 <Button
                     className=""
+                    data-testid="botao-alterar"
                     variant="contained"
                     color="primary"
-                    onClick="">
+                    onClick={() => alterar(object_id)}>
                     Alterar
                 </Button>
-            </div>
         </TableCell>
         )
 }   

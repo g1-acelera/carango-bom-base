@@ -9,7 +9,7 @@ const sidebarStyles = makeStyles((theme) => ({
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
+            // width: drawerWidth,
             flexShrink: 0,
         },
     },
@@ -40,8 +40,12 @@ const sidebarStyles = makeStyles((theme) => ({
         border: "none"
     },
     content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
+        // flexGrow: 1,
+        // padding: theme.spacing(3),
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        marginLeft: "240px",
     },
 }));
 
