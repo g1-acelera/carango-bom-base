@@ -2,8 +2,6 @@ import {render, screen} from "@testing-library/react";
 import React from "react";
 import Cards from "./Cards";
 
-let component;
-
 const veiculosMock = [
   {
     marca: "Renault",
@@ -15,7 +13,7 @@ const veiculosMock = [
 ]
 
 const renderCards = (veiculos) => {
-  component = render(<Cards veiculos={veiculos}/>);
+  render(<Cards veiculos={veiculos}/>);
 };
 
 describe("Test", () => {

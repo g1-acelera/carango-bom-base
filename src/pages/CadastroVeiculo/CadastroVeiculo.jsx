@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import VeiculoService from "../../services/VeiculoService";
+import MarcaService from '../../services/MarcaService';
 import Veiculo from "../../shared/models/Veiculo";
 
 import Formulario from "../../shared/components/Formulario/Formulario";
@@ -12,13 +13,19 @@ import CampoDeValor from '../../shared/components/CampoDeValor/CampoDeValor';
 import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSelecao';
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
-import { espacamentos } from '../../@material/CamposDeTexto';
 
 function CadastroVeiculo() {
   const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
   const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
+  const [marcas, setMarcas] = useState();
 
-  useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
+  useEffect(() => {
+    setValores(dadosConsultados)
+    MarcaService.listar()
+    .then(dados => { 
+      setMarcas(dados)
+    });
+  }, [dadosConsultados, setValores]);
 
 
   return (
@@ -51,7 +58,6 @@ function CadastroVeiculo() {
           label="valor"
           required={true}
           fullWidth
-          className={espacamentos}
         />
 
         <CampoDeTexto
@@ -71,7 +77,7 @@ function CadastroVeiculo() {
           label="Marca"
           fullWidth
           onChange={atualizaValor}
-          className={espacamentos}></CampoDeSelecao>
+          dados={marcas}></CampoDeSelecao>
 
         <BotaoDetalhes
           salvarDesabilidato={!Veiculo.ehVeiculoValido(valores)}/>

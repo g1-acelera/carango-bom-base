@@ -24,7 +24,7 @@ function CampoDeTexto({
             onChange={onChange}
             required={required}
             fullWidth
-            style={{ marginTop: '20px'}}
+            style={{ marginTop: '20px', marginBottom: '20px'}}
         />
     );
 }
