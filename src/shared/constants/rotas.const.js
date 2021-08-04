@@ -3,7 +3,7 @@ const ROTAS = {
     CADASTRO_MARCA: "/cadastro-marca",
     ALTERACAO_MARCA: "/alteracao-marca/:id",
     MARCAS: "/listagem-marcas",
-    VEICULOS: "/veiculos",
+    VEICULOS: "/listagem-veiculos",
     CADASTRO_VEICULO: "/cadastro-veiculo",
     DASHBOARD: "/dashboard",
     LOGIN: "/login",
