@@ -1,13 +1,12 @@
 import API from "../shared/api/api.routes";
+import {CabecalhoComAutenticacao} from "../shared/fetch/Cabecalhos";
 
 const MarcaService = {
   cadastrar(marca) {
     return fetch(`${API}/marcas`, {
       method: 'POST',
       body: JSON.stringify(marca),
-      headers: { 
-        'Content-Type': 'application/json'
-      }
+      headers: CabecalhoComAutenticacao,
     }).then(r => r.json());
   },
 
@@ -15,9 +14,7 @@ const MarcaService = {
     return fetch(`${API}/marcas${marca.id}`, {
       method: 'PUT',
       body: JSON.stringify(marca),
-      headers: { 
-        'Content-Type': 'application/json'
-      }
+      headers: CabecalhoComAutenticacao,
     }).then(r => r.json());
   },
 
@@ -32,9 +29,7 @@ const MarcaService = {
   excluir(marca) {
     return fetch((`${API}/marcas${marca.id}`), {
       method: 'DELETE',
-      headers: { 
-        'Content-Type': 'application/json'
-      }
+      headers: CabecalhoComAutenticacao,
     })
       .then(r => r.json());
   }
