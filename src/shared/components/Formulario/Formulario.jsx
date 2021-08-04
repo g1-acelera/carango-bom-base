@@ -7,7 +7,7 @@ const Formulario = ({children, ehValido, cadastroServico, alteraServico, valores
     function onSubmit(event) {
         event.preventDefault();
         if (!ehValido) return;
-        if (!id) {
+        if (id) {
             alteraServico({ ...valores }).then(res => history.goBack());
             return;
         }

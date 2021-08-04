@@ -5,6 +5,7 @@ import ROTAS from "../../shared/constants/rotas.const";
 import RotaProtegida from "../../routes/RotaProtegida";
 
 const CadastroMarca = lazy(() => import("../CadastroMarca/CadastroMarca"));
+const CadastroVeiculo = lazy(() => import("../CadastroVeiculo/CadastroVeiculo"));
 const ListagemMarcas = lazy(() => import("../ListagemMarca/ListagemMarcas"));
 const ListagemVeiculos = lazy(() => import("../ListagemVeiculos/ListagemVeiculos"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
