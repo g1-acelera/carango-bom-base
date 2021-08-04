@@ -1,4 +1,5 @@
 import API from "../shared/api/api.routes";
+import {CabecalhoComAutenticacao} from "../shared/fetch/Cabecalhos";
 
 const VeiculoService = {
   listar() {
@@ -7,7 +8,8 @@ const VeiculoService = {
   excluir(id) {
     return fetch((`${API}/veiculos/${id}`), {
       method: 'DELETE', 
-      mode: 'cors'
+      mode: 'cors',
+      headers: CabecalhoComAutenticacao,
     }).then(r => r.json());
   },
   consultar(id) {
@@ -17,9 +19,7 @@ const VeiculoService = {
     return fetch(`${API}/veiculos`, {
       method: 'POST',
       body: JSON.stringify(veiculo),
-      headers: { 
-        'Content-Type': 'application/json'
-      }
+      headers: CabecalhoComAutenticacao,
     }).then(r => 
       r.json());
   },
@@ -27,9 +27,7 @@ const VeiculoService = {
     return fetch(`${API}/veiculos/${veiculo.id}`, {
       method: 'PUT',
       body: JSON.stringify(veiculo),
-      headers: { 
-        'Content-Type': 'application/json'
-      }
+      headers: CabecalhoComAutenticacao,
     }).then(r => r.json());
   },
 };
