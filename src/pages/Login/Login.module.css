@@ -1,0 +1,39 @@
+.login__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login__card {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 32px 54px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.05);;
+}
+
+.login__titulo {
+    font-weight: bold;
+}
+
+.login__formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media(max-width: 599px) {
+    .login__container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .login__card {
+        width: 90%;
+    }
+}

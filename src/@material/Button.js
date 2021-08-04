@@ -18,16 +18,21 @@ export const fabStyles = makeStyles(() => ({
     }
 }));
 
-export const BotaoSalvar = withStyles({
+export const BotaoPrincipal = withStyles({
     root: {
         backgroundColor: pink[400],
         borderRadius: '20px',
         color: 'white',
         boxShadow: '0px 4px 4px rgba(236, 64, 122, 0.4)',
         '&:hover': {
-            backgroundColor: '',
+            backgroundColor: 'rgba(236, 64, 122, .9)',
             borderColor: 'none',
             boxShadow: 'none',
+        },
+        '&:disabled': {
+            backgroundColor: "var(--desabilitado)",
+            color: "var(--texto-secundario)",
+            boxShadow: "none",
         },
     },
 })(Button);

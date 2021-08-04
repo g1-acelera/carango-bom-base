@@ -2,31 +2,29 @@ import React, {lazy} from "react";
 import {Route, Switch} from "react-router-dom";
 import MenuLateral from "../../shared/components/Menu/MenuLateral";
 import ROTAS from "../../shared/constants/rotas.const";
-import {Redirect} from "react-router";
+import RotaProtegida from "../../routes/RotaProtegida";
 
 const CadastroMarca = lazy(() => import("../CadastroMarca/CadastroMarca"));
 const CadastroVeiculo = lazy(() => import("../CadastroVeiculo/CadastroVeiculo"));
 const ListagemMarcas = lazy(() => import("../ListagemMarca/ListagemMarcas"));
 const ListagemVeiculos = lazy(() => import("../ListagemVeiculos/ListagemVeiculos"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
+const PaginaNaoEncontrada = lazy(() => import("../PaginaNaoEncontrada/PaginaNaoEncontrada"));
 
 const MenuLateralContainer = () => {
     return (
-        <>
-            <MenuLateral>
-                <Switch>
-                    <Route exact path="/">
-                        <Redirect to={ROTAS.DASHBOARD}/>
-                    </Route>
-                    <Route path={ROTAS.DASHBOARD} component={Dashboard}/>
-                    <Route path={ROTAS.CADASTRO_MARCA} component={CadastroMarca}/>
-                    <Route path={ROTAS.ALTERACAO_MARCA} component={CadastroMarca}/>
-                    <Route path={ROTAS.MARCAS} component={ListagemMarcas}/>
-                    <Route path={ROTAS.VEICULOS} component={ListagemVeiculos}/>
-                    <Route path={ROTAS.CADASTRO_VEICULO} component={CadastroVeiculo}/>
-                </Switch>
-            </MenuLateral>
-        </>
+        <MenuLateral>
+            <Switch>
+                <RotaProtegida exact path={ROTAS.INICIAL} component={Dashboard}/>
+                <RotaProtegida path={ROTAS.DASHBOARD} component={Dashboard}/>
+                <RotaProtegida path={ROTAS.CADASTRO_MARCA} component={CadastroMarca}/>
+                <RotaProtegida path={ROTAS.ALTERACAO_MARCA} component={CadastroMarca}/>
+                <RotaProtegida path={ROTAS.MARCAS} component={ListagemMarcas}/>
+                <RotaProtegida path={ROTAS.CADASTRO_VEICULO} component={CadastroVeiculo}/>
+                <Route path={ROTAS.VEICULOS} component={ListagemVeiculos}/>
+                <Route path={ROTAS.NAO_ENCONTRADO} exact component={PaginaNaoEncontrada}/>
+            </Switch>
+        </MenuLateral>
     );
 };
 
