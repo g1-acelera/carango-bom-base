@@ -1,52 +1,72 @@
-import React from "react";
-import {Typography} from "@material-ui/core";
+import React, {useState} from "react";
+import {Snackbar, Typography} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 import estilos from "./Login.module.css";
 import CampoDeTexto from "../../shared/components/CampoDeTexto/CampoDeTexto";
 import {BotaoPrincipal} from "../../@material/Button";
 import useForm from "../../shared/hooks/useForm";
 import LoginModelo from "../../shared/models/Login";
-import Formulario from "../../shared/components/Formulario/Formulario";
+import LoginService from "../../services/LoginService";
+import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
+import ROTAS from "../../shared/constants/rotas.const";
+import Alert from "../../shared/components/Alert/Alert";
 
 const Login = () => {
+    const [snackbarAberto, setSnackbarAberto] = useState(true);
+    const history = useHistory();
+    const {adicionaDadosUsuario} = useAutenticacaoContext();
     const {atualizaValor, valores} = useForm(LoginModelo.valoresIniciais());
 
+    async function login(event) {
+        event.preventDefault();
+        LoginService.login(valores)
+            .then(res => {
+                adicionaDadosUsuario(res.body());
+                history.push(ROTAS.DASHBOARD);
+            })
+            .catch(() => setSnackbarAberto(true));
+    }
+
     return (
-        <div className={estilos.login__container}>
-            <article className={estilos.login__card}>
-                <Typography className={estilos.login__titulo} variant="h5">Entrar</Typography>
-                <Formulario
-                    className={estilos.login__formulario}
-                    // alteraServico={MarcaService.alterar}
-                    // cadastroServico={MarcaService.cadastrar}
-                    ehValido={LoginModelo.ehModeloValido(valores)}
-                    valores={valores}
-                >
-                    <CampoDeTexto
-                        id="email"
-                        name="email"
-                        label="Email"
-                        required={true}
-                        value={valores?.email || ""}
-                        onChange={atualizaValor}
-                        error={LoginModelo.validacoesEmail(valores?.email)}
-                    />
+        <>
+            <div className={estilos.login__container}>
+                <article className={estilos.login__card}>
+                    <Typography className={estilos.login__titulo} variant="h5" data-testid="titulo">Entrar</Typography>
+                    <form
+                        className={estilos.login__formulario}
+                        onSubmit={login}
+                    >
+                        <CampoDeTexto
+                            id="email"
+                            name="email"
+                            label="Email"
+                            required={true}
+                            value={valores?.email || ""}
+                            onChange={atualizaValor}
+                        />
 
-                    <CampoDeTexto
-                        name="senha"
-                        label="Senha"
-                        required={true}
-                        type="password"
-                        value={valores?.senha || ""}
-                        onChange={atualizaValor}
-                    />
+                        <CampoDeTexto
+                            name="senha"
+                            label="Senha"
+                            required={true}
+                            type="password"
+                            value={valores?.senha || ""}
+                            onChange={atualizaValor}
+                        />
 
-                    <BotaoPrincipal disabled={LoginModelo.ehModeloValido(valores)}>
-                        Entrar
-                    </BotaoPrincipal>
-                </Formulario>
-            </article>
-        </div>
+                        <BotaoPrincipal type="submit" data-testid="botao-entrar">
+                            Entrar
+                        </BotaoPrincipal>
+                    </form>
+                </article>
+            </div>
+            <Snackbar open={snackbarAberto} autoHideDuration={6000} onClose={() => setSnackbarAberto(false)}>
+                <Alert severity="error">
+                    Email/senha incorretos
+                </Alert>
+            </Snackbar>
+        </>
     );
 };
 
