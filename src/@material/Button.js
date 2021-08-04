@@ -25,7 +25,7 @@ export const BotaoPrincipal = withStyles({
         color: 'white',
         boxShadow: '0px 4px 4px rgba(236, 64, 122, 0.4)',
         '&:hover': {
-            backgroundColor: '',
+            backgroundColor: 'rgba(236, 64, 122, .9)',
             borderColor: 'none',
             boxShadow: 'none',
         },
