@@ -5,6 +5,7 @@ const ROTAS = {
     MARCAS: "/listagem-marcas",
     VEICULOS: "/listagem-veiculos",
     CADASTRO_VEICULO: "/cadastro-veiculo",
+    ALTERACAO_VEICULO: "/alteracao-veiculo/:id",
     DASHBOARD: "/dashboard",
     LOGIN: "/login",
     NAO_ENCONTRADO: "**",

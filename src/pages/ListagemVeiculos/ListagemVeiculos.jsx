@@ -43,7 +43,7 @@ export default function ListagemVeiculos() {
       data={veiculos}
       colunaDeAcoes={deveTerColunaDeAcoes}
       service={VeiculoService}
-      caminhoDoObjeto="/veiculos"
+      caminhoDoObjeto="/alteracao-veiculo"
     />
   )
 }
