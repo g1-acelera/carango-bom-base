@@ -1,10 +1,10 @@
 .pagina__container {
-    position: absolute;
     display: flex;
+    margin: 0 auto;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: -240px;
     gap: 3rem;
 }
 
@@ -18,10 +18,10 @@
     display: block;
 }
 
-@media(max-width: 1024px) {
+@media (max-width: 1024px) {
     .pagina__container {
         position: relative;
-        margin-left: initial;
+        /*margin-left: initial;*/
     }
 
     .pagina__titulo {
@@ -33,13 +33,13 @@
     }
 }
 
-@media(max-width: 959px) {
+@media (max-width: 959px) {
     .pagina__titulo {
         font-size: 2rem;
     }
 }
 
-@media(max-width: 599px) {
+@media (max-width: 599px) {
     .pagina__titulo {
         font-size: 1.5rem;
     }
