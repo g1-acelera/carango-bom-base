@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
-
-import {makeStyles} from '@material-ui/core/styles';
+import React, {useEffect, useState} from 'react';
 import VeiculoService from "../../services/VeiculoService";
+import MarcaService from '../../services/MarcaService';
 import Veiculo from "../../shared/models/Veiculo";
 
 import Formulario from "../../shared/components/Formulario/Formulario";
@@ -15,81 +14,76 @@ import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSeleca
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-    divSpace: {
-        marginTop: '20px',
-    },
-    divPadding: {
-        paddingTop: '20px',
-    },
-}));
-
-
 function CadastroVeiculo() {
-    const classes = useStyles();
-    const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
-    const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
+  const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
+  const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
+  const [marcas, setMarcas] = useState();
 
-    useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
+  useEffect(() => {
+    setValores(dadosConsultados)
+    MarcaService.listar()
+    .then(dados => { 
+      setMarcas(dados)
+    });
+  }, [dadosConsultados, setValores]);
 
 
-    return (
-        <h1>Cadastrar Veículo
-            <Formulario
-                cadastroServico={VeiculoService.cadastrar}
-                alteraServico={VeiculoService.alterar}
-                ehValido={Veiculo.ehVeiculoValido(valores)}
-                valores={valores}>
+  return (
+    <h1>Cadastrar Veículo
+      <Formulario
+        cadastroServico={VeiculoService.cadastrar}
+        alteraServico={VeiculoService.alterar}
+        ehValido={Veiculo.ehVeiculoValido(valores)}
+        valores={valores}>
 
-                <CampoDeTexto
-                    id="veiculo-modelo"
-                    name="nome"
-                    label="Modelo"
-                    value={valores
-                        ?.nome || ""}
-                    required={true}
-                    onChange={atualizaValor}/>
+        <CampoDeTexto
+          id="veiculo-modelo"
+          name="nome"
+          label="Modelo"
+          value={valores
+          ?.nome || ""}
+          required={true}
+          onChange={atualizaValor}/>
 
-                <TextField
-                    value={valores?.value}
-                    onChange={atualizaValor}
-                    name="valor"
-                    data-testid="veiculo-valor-text-field"
-                    id="formatted-numberformat-input"
-                    InputProps={{
-                        inputComponent: CampoDeValor,
-                    }}
-                    variant="outlined"
-                    label="valor"
-                    required={true}
-                    fullWidth
-                    className={classes.divSpace}
-                />
+        <TextField
+          value={valores?.value}
+          onChange={atualizaValor}
+          name="valor"
+          data-testid="veiculo-valor-text-field"
+          id="formatted-numberformat-input"
+          InputProps={{
+            inputComponent: CampoDeValor,
+          }}
+          variant="outlined"
+          label="valor"
+          required={true}
+          fullWidth
+        />
 
-                <CampoDeTexto
-                    id="veiculo-ano"
-                    name="ano"
-                    label="Ano"
-                    value={valores
-                        ?.ano || ""}
-                    required={true}
-                    onChange={atualizaValor}/>
+        <CampoDeTexto
+          id="veiculo-ano"
+          name="ano"
+          label="Ano"
+          value={valores
+          ?.ano || ""}
+          required={true}
+          onChange={atualizaValor}/>
 
-                <CampoDeSelecao
-                    id="veiculo-marca-id"
-                    name="marcaId"
-                    value={valores
-                        ?.marcaId || ""}
-                    label="Marca"
-                    fullWidth
-                    onChange={atualizaValor}
-                    className={classes.divSpace}/>
+        <CampoDeSelecao
+          id="veiculo-marca-id"
+          name="marcaId"
+          value={valores
+          ?.marcaId || ""}
+          label="Marca"
+          fullWidth
+          onChange={atualizaValor}
+          dados={marcas}></CampoDeSelecao>
 
-                <BotaoDetalhes
-                    salvarDesabilidado={!Veiculo.ehVeiculoValido(valores)}/>
-            </Formulario>
-        </h1>
-    );
+        <BotaoDetalhes
+          salvarDesabilitado={!Veiculo.ehVeiculoValido(valores)}/>
+      </Formulario>
+    </h1>
+  );
 
 }
 

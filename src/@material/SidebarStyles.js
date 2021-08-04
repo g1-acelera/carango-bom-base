@@ -3,7 +3,7 @@ import {grey} from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
-const sidebarStyles = makeStyles((theme) => ({
+const SidebarStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
@@ -45,4 +45,4 @@ const sidebarStyles = makeStyles((theme) => ({
     },
 }));
 
-export default sidebarStyles;
+export default SidebarStyles;

@@ -32,7 +32,8 @@ function ListagemMarcas() {
     const history = useHistory();
 
     function alterar() {
-        history.push('/alteracao-marca/' + marcaSelecionada.id);
+        if (marcaSelecionada)
+            history.push('/alteracao-marca/' + marcaSelecionada.id);
     }
 
     function excluir() {

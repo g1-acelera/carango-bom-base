@@ -16,10 +16,10 @@ const AutenticacaoProvider = ({children}) => {
     const [dadosUsuario, setDadosUsuario] = useState(undefined);
     const [ehUsuarioLogado, setEhUsuarioLogado] = useState(estaLogadoLocalStorage());
 
-    function adicionaDadosUsuario(dadosUsuario) {
+    function adicionaDadosUsuario(dadosAdicionarUsuario) {
         setEhUsuarioLogado(true);
-        setDadosUsuario(dadosUsuario);
-        setDadosUsuarioLocalStorage(dadosUsuario);
+        setDadosUsuario(dadosAdicionarUsuario);
+        setDadosUsuarioLocalStorage(dadosAdicionarUsuario);
     }
 
     function removeDadosUsuario() {
