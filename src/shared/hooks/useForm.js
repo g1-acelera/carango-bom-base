@@ -1,7 +1,8 @@
 import {useState} from "react";
 
-const useForm = (initialValues) => {
-    const [valores, setValores] = useState({...initialValues});
+const useForm = (valoresIniciais) => {
+    const [valores, setValores] = useState({...valoresIniciais});
+
     function atualizaValor(event) {
         const {name, value} = event.target;
         setValores({
@@ -9,6 +10,7 @@ const useForm = (initialValues) => {
             [name]: value
         });
     }
+
     return {atualizaValor, valores, setValores};
 };
 

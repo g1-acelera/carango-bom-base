@@ -31,7 +31,6 @@ function CadastroMarca() {
                 onChange={atualizaValor}
             />
             <BotaoDetalhes
-                consultarServico={MarcaService.consultar}
                 salvarDesabilidato={Marca.ehModeloValido(valores)}
             />
         </Formulario>

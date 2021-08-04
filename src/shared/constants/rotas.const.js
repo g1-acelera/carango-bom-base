@@ -1,10 +1,13 @@
 const ROTAS = {
     INICIAL: "/",
-    CADASTRO_MARCA: "/CadastroMarca",
+    CADASTRO_MARCA: "/cadastro-marca",
     ALTERACAO_MARCA: "/alteracao-marca/:id",
     MARCAS: "/listagem-marcas",
     VEICULOS: "/veiculos",
+    CADASTRO_VEICULO: "/cadastro-veiculo",
     DASHBOARD: "/dashboard",
+    LOGIN: "/login",
+    NAO_ENCONTRADO: "**",
 };
 
 export default ROTAS;

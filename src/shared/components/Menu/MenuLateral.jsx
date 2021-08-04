@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import {Drawer, Hidden} from "@material-ui/core";
-import sidebarStyles from "../../../@material/Sidebar";
+import SidebarStyles from "../../../@material/SidebarStyles";
 import MenuLateralItem from "./MenuLateralItem";
 import MenuSuperior from "./MenuSuperior";
 
 const MenuLateral = ({children}) => {
-    const classes = sidebarStyles();
+    const classes = SidebarStyles();
     const [menuAberto, setMenuFechado] = useState(false);
 
     function alteraVisibilidadeMenuLateral() {

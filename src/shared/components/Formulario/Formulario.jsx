@@ -1,13 +1,13 @@
 import {useHistory, useParams} from "react-router";
 
-const Formulario = ({children, ehValido, cadastroServico, alteraServico, valores}) => {
+const Formulario = ({children, ehValido, cadastroServico, alteraServico, valores, ...rest}) => {
     const {id} = useParams();
     const history = useHistory();
 
     function onSubmit(event) {
         event.preventDefault();
         if (!ehValido) return;
-        if (!id) {
+        if (id) {
             alteraServico({ ...valores }).then(res => history.goBack());
             return;
         }
@@ -15,7 +15,7 @@ const Formulario = ({children, ehValido, cadastroServico, alteraServico, valores
     }
 
     return (
-        <form data-testid="form" onSubmit={onSubmit}>
+        <form {...rest} data-testid="form" onSubmit={onSubmit}>
             {children}
         </form>
     );

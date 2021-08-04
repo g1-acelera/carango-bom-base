@@ -1,0 +1,10 @@
+.cardPrincipal {
+    width: 250px;
+    display: inline-flex;
+    margin-right: 30px;
+    margin-bottom: 15px;
+}
+
+.cardTitulo {
+    font-size: 14px;
+}
