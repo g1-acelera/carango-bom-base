@@ -3,7 +3,7 @@ import {useHistory, useParams} from "react-router";
 
 import {BotaoCancelar, BotaoPrincipal} from "../../../@material/Button";
 
-const BotaoDetalhes = ({salvarDesabilidado}) => {
+const BotaoDetalhes = ({salvarDesabilitado}) => {
     const {id} = useParams();
     const history = useHistory();
 
@@ -18,7 +18,7 @@ const BotaoDetalhes = ({salvarDesabilidado}) => {
                 variant="contained"
                 color="primary"
                 type="submit"
-                disabled={salvarDesabilidado}
+                disabled={salvarDesabilitado}
                 style={{ marginTop: '20px'}}
             >
                 {id ? 'Alterar' : 'Cadastrar'}

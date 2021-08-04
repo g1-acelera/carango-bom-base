@@ -5,9 +5,11 @@ import {NavLink} from "react-router-dom";
 import {Divider, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import MENU_ITEM from "./constants/menu-item.const";
 import SidebarStyles from "../../../@material/SidebarStyles";
-import {NavLink} from "react-router-dom";
+import {useAutenticacaoContext} from "../../context/autenticacao.context";
 
 const MenuLateralItem = () => {
+    const {ehUsuarioLogado} = useAutenticacaoContext();
+    const history = useHistory();
     const classes = SidebarStyles();
 
     function itemMenu(item, index) {

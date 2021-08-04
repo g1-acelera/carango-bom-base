@@ -77,10 +77,10 @@ function CadastroVeiculo() {
           label="Marca"
           fullWidth
           onChange={atualizaValor}
-          dados={marcas}></CampoDeSelecao>
+          dados={marcas}/>
 
         <BotaoDetalhes
-          salvarDesabilitado={!Veiculo.ehVeiculoValido(valores)}/>
+            salvarDesabilitado={!Veiculo.ehVeiculoValido(valores)}/>
       </Formulario>
     </h1>
   );
