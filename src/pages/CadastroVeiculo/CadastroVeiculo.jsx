@@ -36,7 +36,7 @@ function CadastroVeiculo() {
         setMarcas(dados)
       });
 
-    if (dadosConsultados !== undefined) {
+    if (dadosConsultados) {
       dadosConsultados.marcaId = dadosConsultados.marca.id;
     }
   }, [dadosConsultados, setValores]);
