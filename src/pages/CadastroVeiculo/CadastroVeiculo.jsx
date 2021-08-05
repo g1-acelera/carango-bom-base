@@ -41,13 +41,12 @@ function CadastroVeiculo() {
         });
     }
     loadData()
-    
   }, [dadosConsultados, setValores]);
 
   return (
     <div id="cadastro-veiculo-screen">
 
-      <h1>{title}</h1>
+      <h1 id="cadastro-veiculo-title">{title}</h1>
       <Formulario
         cadastroServico={VeiculoService.cadastrar}
         alteraServico={VeiculoService.alterar}

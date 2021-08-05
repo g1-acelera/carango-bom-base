@@ -1,4 +1,5 @@
 import {render, screen} from "@testing-library/react";
+import renderer from 'react-test-renderer';
 import {MemoryRouter} from "react-router-dom";
 import CadastroVeiculo from "./CadastroVeiculo";
 
@@ -44,5 +45,16 @@ describe("Teste do Componente de Cadastro de Veículo", () => {
         const btnSalvar = screen.getByTestId("btnSalvar");
         veiculoValor.setAttribute("value", "100.000");
         expect(btnSalvar).toBeDisabled();
+    });
+
+    it("Deve mostrar o título de Cadastro quando carregar componente pela URL de Cadastro de Veículo", () => {
+        const cadastroVeiculo = renderer.create(<MemoryRouter initialEntries={[{ pathname: "/cadastro-veiculo" }]} ><CadastroVeiculo/></MemoryRouter>);
+
+        expect(cadastroVeiculo.root.findByProps({id: "cadastro-veiculo-title"}).children).toEqual(['Cadastrar Veículo']);
+    });
+    it("Deve mostrar o título de Alterar quando carregar componente pela URL de Alteração de Veículo", () => {
+        const cadastroVeiculo = renderer.create(<MemoryRouter initialEntries={[{ pathname: "/alteracao-veiculo/1" }]} ><CadastroVeiculo/></MemoryRouter>);
+
+        expect(cadastroVeiculo.root.findByProps({id: "cadastro-veiculo-title"}).children).toEqual(['Alterar Veículo']);
     });
 });
