@@ -10,6 +10,8 @@ const ListagemMarcas = lazy(() => import("../ListagemMarca/ListagemMarcas"));
 const ListagemVeiculos = lazy(() => import("../ListagemVeiculos/ListagemVeiculos"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
 const PaginaNaoEncontrada = lazy(() => import("../PaginaNaoEncontrada/PaginaNaoEncontrada"));
+const ListagemUsuarios = lazy(() => import("../ListagemUsuarios/ListagemUsuarios"));
+const CadastroUsuario = lazy(() => import("../CadastroUsuario/CadastroUsuario"));
 
 const MenuLateralContainer = () => {
     return (
@@ -22,6 +24,9 @@ const MenuLateralContainer = () => {
                 <RotaProtegida path={ROTAS.MARCAS} component={ListagemMarcas}/>
                 <RotaProtegida path={ROTAS.CADASTRO_VEICULO} component={CadastroVeiculo}/>
                 <RotaProtegida path={ROTAS.ALTERACAO_VEICULO} component={CadastroVeiculo}/>
+                <RotaProtegida path={ROTAS.USUARIOS} component={ListagemUsuarios}/>
+                <RotaProtegida path={ROTAS.CADASTRO_USUARIO} component={CadastroUsuario}/>
+                <RotaProtegida path={ROTAS.ALTERACAO_USUARIO} component={CadastroUsuario}/>
                 <Route path={ROTAS.VEICULOS} component={ListagemVeiculos}/>
                 <Route path={ROTAS.NAO_ENCONTRADO} exact component={PaginaNaoEncontrada}/>
             </Switch>
