@@ -1,7 +1,7 @@
 const ROTAS = {
     INICIAL: "/",
     CADASTRO_MARCA: "/cadastro-marca",
-    ALTERACAO_MARCA: "/alteracao-marca/:id",
+    ALTERACAO_MARCA: "/alteracao-marca/",
     MARCAS: "/listagem-marcas",
     VEICULOS: "/listagem-veiculos",
     CADASTRO_VEICULO: "/cadastro-veiculo",
