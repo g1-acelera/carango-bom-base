@@ -41,13 +41,14 @@ describe("Testes de MarcaService", () => {
         const marca = {nome: "Teste"}
         const expected = {id:1, nome: "Teste"}
         fetch.mockResponseOnce(JSON.stringify(expected));
-        const response = await MarcaService.cadastrar(expected)
+        const response = await MarcaService.cadastrar(marca)
         expect(response).toStrictEqual(expected)
     })
     it("Não deve alterar uma marca", async () => {
         const expected = {status: 404}
+        const marca = {id: 28, nome: "Bentley"}
         fetch.mockResponseOnce(JSON.stringify(expected));
-        const response = await MarcaService.consultar(1)
+        const response = await MarcaService.alterar(marca)
         expect(response).toStrictEqual(expected)
     })
     it("Deve alterar marcar", async () => {
@@ -64,7 +65,7 @@ describe("Testes de MarcaService", () => {
     it("Não deve excluir uma marca", async () => {
         const expected = {status: 404}
         fetch.mockResponseOnce(JSON.stringify(expected));
-        const response = await MarcaService.consultar(1)
+        const response = await MarcaService.excluir(99)
         expect(response).toStrictEqual(expected)
     })
 })

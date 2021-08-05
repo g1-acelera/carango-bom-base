@@ -92,8 +92,15 @@ describe("Testes de VeiculoService", () => {
     })
     it("Não deve alterar um veiculo", async () => {
         const expected = {status: 404}
+        const veiculo = {
+            id: 39,
+            ano: 2008, 
+            nome: "Uno de firma com Escada", 
+            valor: 15000, 
+            veiculo: {id:3, nome: "Fiat"}
+        }
         fetch.mockResponseOnce(JSON.stringify(expected));
-        const response = await VeiculoService.consultar(1)
+        const response = await VeiculoService.alterar(veiculo)
         expect(response).toStrictEqual(expected)
     })
     it("Deve excluir veiculor", async () => {
@@ -104,7 +111,7 @@ describe("Testes de VeiculoService", () => {
     it("Não deve excluir um veiculo", async () => {
         const expected = {status: 404}
         fetch.mockResponseOnce(JSON.stringify(expected));
-        const response = await VeiculoService.consultar(1)
+        const response = await VeiculoService.excluir(39)
         expect(response).toStrictEqual(expected)
     })
 });
