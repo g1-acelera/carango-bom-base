@@ -1,8 +1,8 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
-import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
 
-import {Button, IconButton} from '@material-ui/core'
+import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
+import {IconButton} from '@material-ui/core'
 import TableCell from "@material-ui/core/TableCell"
 
 export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {

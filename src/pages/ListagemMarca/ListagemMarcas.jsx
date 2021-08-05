@@ -32,8 +32,8 @@ function ListagemMarcas() {
     const history = useHistory();
 
     function alterar() {
-        if (marcaSelecionada)
-            history.push('/alteracao-marca/' + marcaSelecionada.id);
+        if (!marcaSelecionada) return;
+        history.push(`${ROTAS.ALTERACAO_MARCA}${marcaSelecionada?.id}`);
     }
 
     function excluir() {
@@ -52,7 +52,7 @@ function ListagemMarcas() {
     }
 
     return (
-        <div>
+        <>
             <DataGrid style={{flexGrow: 1}} autoHeight={true} rows={marcas} columns={colunas}
                       onCellClick={gridSelection => {
                           setMarcaSelecionada(gridSelection.row)
@@ -82,7 +82,7 @@ function ListagemMarcas() {
                  onClick={() => history.push(ROTAS.CADASTRO_MARCA)}>
                 <AddIcon/>
             </Fab>
-        </div>
+        </>
     );
 }
 
