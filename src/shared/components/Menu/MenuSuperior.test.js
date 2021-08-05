@@ -5,6 +5,18 @@ import {autenticacaoContextConsumer, BotaoSimular,} from "../../test-utils/auten
 
 let menuClick = jest.fn();
 
+const SimulacaoContexto = () => {
+    const {queryByTestId, getByTestId} = autenticacaoContextConsumer(
+        (value) => (
+            <>
+                <BotaoSimular value={value}/>
+                <MenuSuperior/>
+            </>
+        )
+    );
+    return {queryByTestId, getByTestId};
+}
+
 describe("Teste de menu superior", () => {
     describe("Botão entrar", () => {
         it("Deve existir o botão de entrar se o usuario nao estiver logado", () => {
@@ -18,14 +30,7 @@ describe("Teste de menu superior", () => {
         });
 
         it("Não deve exibir o botão entrar quando o usuário estiver logado", () => {
-            const {queryByTestId, getByTestId} = autenticacaoContextConsumer(
-                (value) => (
-                    <>
-                        <BotaoSimular value={value}/>
-                        <MenuSuperior/>
-                    </>
-                )
-            );
+            const {getByTestId, queryByTestId} = SimulacaoContexto();
             fireEvent.click(getByTestId("botao-simular"));
             expect(queryByTestId("botao-entrar")).not.toBeInTheDocument();
         });
@@ -38,27 +43,13 @@ describe("Teste de menu superior", () => {
         });
 
         it("Deve exibir o botão sair quando o usuário estiver logado", () => {
-            const {queryByTestId, getByTestId} = autenticacaoContextConsumer(
-                (value) => (
-                    <>
-                        <BotaoSimular value={value}/>
-                        <MenuSuperior/>
-                    </>
-                )
-            );
+            const {getByTestId, queryByTestId} = SimulacaoContexto();
             fireEvent.click(getByTestId("botao-simular"));
             expect(queryByTestId("botao-sair")).toBeInTheDocument();
         });
 
         it("Deve possuir o texto 'Sair'", () => {
-            const {getByTestId} = autenticacaoContextConsumer(
-                (value) => (
-                    <>
-                        <BotaoSimular value={value}/>
-                        <MenuSuperior/>
-                    </>
-                )
-            );
+            const {getByTestId} = SimulacaoContexto();
             fireEvent.click(getByTestId("botao-simular"));
             expect(getByTestId("botao-sair")).toHaveTextContent(/Sair/i);
         });

@@ -6,7 +6,7 @@ import estilos from "./Login.module.css";
 import CampoDeTexto from "../../shared/components/CampoDeTexto/CampoDeTexto";
 import {BotaoPrincipal} from "../../@material/Button";
 import useForm from "../../shared/hooks/useForm";
-import LoginModelo from "../../shared/models/Login";
+import LoginModelo from "../../shared/models/LoginModelo";
 import LoginService from "../../services/LoginService";
 import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import ROTAS from "../../shared/constants/rotas.const";

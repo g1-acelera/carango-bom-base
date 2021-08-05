@@ -8,8 +8,12 @@ import {
 export const AutenticacaoContext = createContext({
     dadosUsuario: {},
     ehUsuarioLogado: estaLogadoLocalStorage(),
-    adicionaDadosUsuario: () => {},
-    removeDadosUsuario: () => {},
+    adicionaDadosUsuario: () => {
+        // this is intentional
+    },
+    removeDadosUsuario: () => {
+        // this is intentional
+    },
 });
 
 const AutenticacaoProvider = ({children}) => {

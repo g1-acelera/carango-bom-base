@@ -18,8 +18,7 @@ class Veiculo {
     }
 
     static validacaoValor(valorDoCampo) {
-        const obrigatorio = validaObrigatoriedade(valorDoCampo)
-        return obrigatorio
+        return validaObrigatoriedade(valorDoCampo)
     }
 
     static ehVeiculoValido(valores) {
