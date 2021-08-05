@@ -32,7 +32,7 @@ function CadastroVeiculo() {
       if (dadosConsultados) {
         dadosConsultados.marcaId = dadosConsultados.marca.id;
       }
-      await setValores(dadosConsultados);
+      setValores(dadosConsultados);
 
       await MarcaService
         .listar()
