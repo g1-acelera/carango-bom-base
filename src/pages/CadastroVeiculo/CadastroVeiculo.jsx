@@ -28,17 +28,20 @@ function CadastroVeiculo() {
     : "Alterar Veículo";
 
   useEffect(() => {
-    setValores(dadosConsultados);
+    async function loadData() {
+      if (dadosConsultados) {
+        dadosConsultados.marcaId = dadosConsultados.marca.id;
+      }
+      await setValores(dadosConsultados);
 
-    MarcaService
-      .listar()
-      .then(dados => {
-        setMarcas(dados)
-      });
-
-    if (dadosConsultados !== undefined && dadosConsultados !== null) {
-      dadosConsultados.marcaId = dadosConsultados.marca.id;
+      await MarcaService
+        .listar()
+        .then(dados => {
+          setMarcas(dados)
+        });
     }
+    loadData()
+    
   }, [dadosConsultados, setValores]);
 
   return (
