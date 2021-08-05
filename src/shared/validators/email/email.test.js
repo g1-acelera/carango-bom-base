@@ -1,4 +1,4 @@
-import validaEmail from "./email";
+import validaEmail from "./validaEmail";
 
 describe("Email testes", () => {
     it("Deve retornar mensagem quando o email estiver fora do padrão", () => {
