@@ -4,9 +4,9 @@ import {useEffect, useState} from "react";
 const useConsultaEntidade = (consultaServico) => {
     const [dadosConsultados, setDadosConsultados] = useState();
     const {id} = useParams();
-    useEffect(() => {
+    useEffect(async () => {
         if (!id) return;
-        consultaServico(id).then(dados => setDadosConsultados(dados));
+        await consultaServico(id).then(dados => setDadosConsultados(dados));
     }, [id, consultaServico]);
     return {dadosConsultados};
 };
