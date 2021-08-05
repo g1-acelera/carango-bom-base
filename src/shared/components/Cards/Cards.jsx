@@ -21,8 +21,7 @@ const Cards = ({veiculos}) => {
               {veiculo.marca}
             </Typography>
             <Typography variant="body2" component="p">
-              {veiculo.data.length}
-              quantidade(s)
+              {veiculo.data.length}&nbsp;quantidade(s)
               <br/>
               <NumberFormat
                 value={veiculo

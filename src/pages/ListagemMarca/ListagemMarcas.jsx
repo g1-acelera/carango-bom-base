@@ -52,7 +52,7 @@ function ListagemMarcas() {
     }
 
     return (
-        <>
+        <div  data-testid="telaMarcaListagem">
             <DataGrid style={{flexGrow: 1}} autoHeight={true} rows={marcas} columns={colunas}
                       onCellClick={gridSelection => {
                           setMarcaSelecionada(gridSelection.row)
@@ -78,11 +78,11 @@ function ListagemMarcas() {
                 </Button>
             </div>
 
-            <Fab color="primary" aria-label="add" className={classes.fab}
+            <Fab id="fab-AddMarca" data-testid="fab-AddMarca" color="primary" aria-label="add" className={classes.fab}
                  onClick={() => history.push(ROTAS.CADASTRO_MARCA)}>
                 <AddIcon/>
             </Fab>
-        </>
+        </div>
     );
 }
 

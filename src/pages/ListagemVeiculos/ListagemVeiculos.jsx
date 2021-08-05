@@ -2,11 +2,19 @@ import React, { useState, useEffect, useMemo } from "react"
 import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import VeiculoService from "../../services/VeiculoService"
 import Tabela from "../../shared/components/Tabela/Tabela"
+import {useHistory} from 'react-router-dom';
+import {fabStyles} from '../../@material/Button';
+import AddIcon from '@material-ui/icons/Add';
+import {Fab} from '@material-ui/core';
+import ROTAS from "../../shared/constants/rotas.const";
 
-export default function ListagemVeiculos() {
+
+function ListagemVeiculos() {
   const [veiculos, setVeiculos] = useState([])
   const {ehUsuarioLogado} = useAutenticacaoContext();
   const deveTerColunaDeAcoes = ehUsuarioLogado? true : false;
+  const classes = fabStyles();
+  const history = useHistory();
 
   const colunas = useMemo(
     () => [
@@ -38,12 +46,20 @@ export default function ListagemVeiculos() {
   }
 
   return (
-    <Tabela 
-      columns={colunas} 
-      data={veiculos}
-      colunaDeAcoes={deveTerColunaDeAcoes}
-      service={VeiculoService}
-      caminhoDoObjeto="/alteracao-veiculo"
-    />
+    <div data-testid="telaListagem">
+        <Tabela 
+          columns={colunas} 
+          data={veiculos}
+          colunaDeAcoes={deveTerColunaDeAcoes}
+          service={VeiculoService}
+          caminhoDoObjeto="/veiculos"
+        />
+        <Fab data-testid="fab-AddMarca" color="primary" aria-label="add" className={classes.fab}
+        onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
+          <AddIcon/>
+        </Fab>
+    </div>
   )
 }
+
+export default ListagemVeiculos;
