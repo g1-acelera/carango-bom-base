@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react"
+
 import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import VeiculoService from "../../services/VeiculoService"
 import Tabela from "../../shared/components/Tabela/Tabela"
@@ -6,7 +7,6 @@ import Tabela from "../../shared/components/Tabela/Tabela"
 export default function ListagemVeiculos() {
   const [veiculos, setVeiculos] = useState([])
   const {ehUsuarioLogado} = useAutenticacaoContext();
-  const deveTerColunaDeAcoes = ehUsuarioLogado? true : false;
 
   const colunas = useMemo(
     () => [
@@ -41,7 +41,7 @@ export default function ListagemVeiculos() {
     <Tabela 
       columns={colunas} 
       data={veiculos}
-      colunaDeAcoes={deveTerColunaDeAcoes}
+      colunaDeAcoes={ehUsuarioLogado? true : false}
       service={VeiculoService}
       caminhoDoObjeto="/alteracao-veiculo"
     />

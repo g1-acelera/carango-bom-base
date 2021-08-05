@@ -26,8 +26,8 @@ const MarcaService = {
     return fetch(`${API}/marcas`).then(r => r.json());
   },
 
-  excluir(marca) {
-    return fetch((`${API}/marcas${marca.id}`), {
+  excluir(id) {
+    return fetch((`${API}/marcas/${id}`), {
       method: 'DELETE',
       headers: CabecalhoComAutenticacao,
     })
