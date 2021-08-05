@@ -13,7 +13,6 @@ import AddIcon from '@material-ui/icons/Add';
 function ListagemVeiculos() {
   const [veiculos, setVeiculos] = useState([])
   const {ehUsuarioLogado} = useAutenticacaoContext();
-  const deveTerColunaDeAcoes = ehUsuarioLogado? true : false;
   const classes = fabStyles();
   const history = useHistory();
 
@@ -51,7 +50,7 @@ function ListagemVeiculos() {
         <Tabela 
           columns={colunas} 
           data={veiculos}
-          colunaDeAcoes={deveTerColunaDeAcoes}
+          colunaDeAcoes={ehUsuarioLogado? true : false}
           service={VeiculoService}
           caminhoDoObjeto="/veiculos"
         />
