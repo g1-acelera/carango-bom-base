@@ -31,22 +31,26 @@ const setup = (value) => {
 
 beforeEach(() => {
     jest.clearAllMocks();
-  });
+});
 
 describe("Teste do campo de valor", () => {
     it("Deve renderizar o componente", () => {
-        const { wrapper } = setup(valorMock);
+        const {wrapper} = setup(valorMock);
         expect(wrapper.exists()).toBeTruthy();
     });
     it("Deve possuir texto digitado", () => {
-        const { wrapper } = setup(valorMock);
+        const {wrapper} = setup(valorMock);
         expect(wrapper.find(idProperty).props().value).toEqual(valorMock);
     });
-    it("Deve chamar onChange quando haver alterações no valor digitado", () => {
-        const { wrapper } = setup(valorMock);
+    it("Deve chamar onChange quando hover alterações no valor digitado", () => {
+        const {wrapper} = setup(valorMock);
         const novoValor = "9";
         const testField = wrapper.find(idProperty);
-        testField.simulate('change', {target: {value: novoValor, focus: () => {}}});
+        testField.simulate('change', {
+            target: {
+                value: novoValor
+            }
+        });
         expect(onChange).toHaveBeenCalled();
     });
 });
