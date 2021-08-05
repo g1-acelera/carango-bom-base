@@ -15,10 +15,12 @@ function CadastroMarca() {
     useEffect(() => setValores(dadosConsultados), [dadosConsultados, setValores]);
 
     return (
+        <div style={{minWidth: "40%"}}>
+        <h1>Cadastrar Marca</h1>
         <Formulario
             alteraServico={MarcaService.alterar}
             cadastroServico={MarcaService.cadastrar}
-            ehValido={Marca.ehModeloValido()}
+            ehValido={Marca.ehModeloValido(valores)}
             valores={valores}
         >
             <CampoDeTexto
@@ -26,14 +28,14 @@ function CadastroMarca() {
                 name="nome"
                 label="Marca"
                 value={valores?.nome || ""}
-                error={Marca.validacoesNome(valores?.nome)}
                 required={true}
                 onChange={atualizaValor}
             />
             <BotaoDetalhes
-                salvarDesabilidato={Marca.ehModeloValido(valores)}
+                salvarDesabilitado={!Marca.ehModeloValido(valores)}
             />
         </Formulario>
+        </div>
     );
 }
 

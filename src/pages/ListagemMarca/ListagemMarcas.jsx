@@ -34,7 +34,7 @@ function ListagemMarcas() {
     }
 
     return (
-        <div>
+        <div data-testid="telaMarcaListagem">
             <Tabela 
                 columns={colunas} 
                 data={marcas}
@@ -42,7 +42,7 @@ function ListagemMarcas() {
                 service={MarcaService}
                 caminhoDoObjeto="/marcas"
             />
-            <Fab color="primary" aria-label="add" className={classes.fab}
+            <Fab id="fab-AddMarca" data-testid="fab-AddMarca" color="primary" aria-label="add" className={classes.fab}
                  onClick={() => history.push(ROTAS.CADASTRO_MARCA)}>
                 <AddIcon/>
             </Fab>
