@@ -7,16 +7,10 @@ import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
 import {IconButton} from '@material-ui/core'
 import TableCell from "@material-ui/core/TableCell"
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {makeStyles} from "@material-ui/core/styles"
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-const buttonStyles = makeStyles((theme) => ({
-    rightButton: {
-      marginLeft: theme.spacing(1)
-    },
-  }))
 
 export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
     const history = useHistory()
@@ -33,15 +27,13 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
             })
     }
 
-    const handleClickOpen = () => {
+    const abrirDialogo = () => {
         setOpen(true);
       };
     
-    const handleClose = () => {
+    const fecharDialogo = () => {
         setOpen(false);
     };
-
-    const styles = buttonStyles()
 
     return (
         <>
@@ -58,14 +50,14 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
                 data-testid="botao-excluir"
                 variant="contained"
                 color="secondary"
-                onClick={() => excluir(object_id)}>
+                onClick={() => abrirDialogo()}>
                 <DeleteOutlineOutlined color="error"/>
             </IconButton>
         </TableCell>
         <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="draggable-dialog-title"
+            open={open}
+            onClose={fecharDialogo}
+            aria-labelledby="draggable-dialog-title"
         >   
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
             Cuidado
@@ -76,7 +68,7 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
             </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
+        <Button autoFocus onClick={fecharDialogo} color="primary">
             Cancelar
         </Button>
         <Button onClick={() => excluir(object_id)} color="primary">
