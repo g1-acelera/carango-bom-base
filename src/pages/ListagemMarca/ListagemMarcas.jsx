@@ -40,7 +40,7 @@ function ListagemMarcas() {
                 data={marcas}
                 colunaDeAcoes={ehUsuarioLogado? true : false}
                 service={MarcaService}
-                caminhoDoObjeto="/marcas"
+                caminhoDoObjeto="/alteracao-marca"
             />
             <Fab id="fab-AddMarca" data-testid="fab-AddMarca" color="primary" aria-label="add" className={classes.fab}
                  onClick={() => history.push(ROTAS.CADASTRO_MARCA)}>

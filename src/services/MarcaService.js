@@ -11,7 +11,7 @@ const MarcaService = {
   },
 
   alterar(marca) {
-    return fetch(`${API}/marcas${marca.id}`, {
+    return fetch(`${API}/marcas/${marca.id}`, {
       method: 'PUT',
       body: JSON.stringify(marca),
       headers: CabecalhoComAutenticacao,

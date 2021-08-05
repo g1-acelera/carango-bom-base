@@ -52,7 +52,7 @@ function ListagemVeiculos() {
           data={veiculos}
           colunaDeAcoes={ehUsuarioLogado? true : false}
           service={VeiculoService}
-          caminhoDoObjeto="/veiculos"
+          caminhoDoObjeto="/alteracao-veiculo"
         />
         <Fab data-testid="fab-AddMarca" color="primary" aria-label="add" className={classes.fab}
         onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
