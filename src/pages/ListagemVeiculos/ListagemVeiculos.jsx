@@ -46,7 +46,7 @@ function ListagemVeiculos() {
   }
 
   return (
-    <div data-testid="telaListagem">
+    <div data-testid="telaListagem" style={{width: "100%"}}>
         <Tabela 
           columns={colunas} 
           data={veiculos}
