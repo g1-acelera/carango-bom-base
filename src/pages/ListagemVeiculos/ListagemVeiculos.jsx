@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useMemo } from "react"
+
 import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import VeiculoService from "../../services/VeiculoService"
 import Tabela from "../../shared/components/Tabela/Tabela"
 import {useHistory} from 'react-router-dom';
 import {fabStyles} from '../../@material/Button';
-import AddIcon from '@material-ui/icons/Add';
 import {Fab} from '@material-ui/core';
 import ROTAS from "../../shared/constants/rotas.const";
+import AddIcon from '@material-ui/icons/Add';
 
 
 function ListagemVeiculos() {

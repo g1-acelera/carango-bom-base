@@ -1,25 +1,41 @@
-import React from 'react'
+import {React, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
-import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
-import {IconButton} from '@material-ui/core'
+import Dialog from '@material-ui/core/Dialog';
 import TableCell from "@material-ui/core/TableCell"
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import {IconButton, Button} from "@material-ui/core"
+import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
+
 
 export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
-    const history = useHistory();
+    const history = useHistory()
+    const [open, setOpen] = useState(false)
 
-    function alterar(id) {
+    const alterar = (id) => {
         history.push(caminhoDoObjeto + "/" + id)
     }
 
-    function excluir(id) {
+    const excluir = (id) => {
         service.excluir(id)
             .then(() => {
                 history.go(0)
             })
     }
 
+    const abrirDialogo = () => {
+        setOpen(true);
+      };
+    
+    const fecharDialogo = () => {
+        setOpen(false);
+    };
+
     return (
+        <>
         <TableCell>
             <IconButton
                 data-testid="botao-alterar"
@@ -33,9 +49,32 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
                 data-testid="botao-excluir"
                 variant="contained"
                 color="secondary"
-                onClick={() => excluir(object_id)}>
+                onClick={() => abrirDialogo()}>
                 <DeleteOutlineOutlined color="error"/>
             </IconButton>
         </TableCell>
+        <Dialog
+            open={open}
+            onClose={fecharDialogo}
+            aria-labelledby="draggable-dialog-title"
+        >   
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+            Cuidado
+        </DialogTitle>
+        <DialogContent>
+            <DialogContentText>
+                Tem certeza que quer excluir este registro?
+            </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <Button autoFocus onClick={fecharDialogo} color="primary">
+            Cancelar
+        </Button>
+        <Button onClick={() => excluir(object_id)} color="primary">
+            Excluir
+        </Button>
+        </DialogActions>
+        </Dialog>
+        </>
     )
 }   
