@@ -31,7 +31,10 @@ const MarcaService = {
       method: 'DELETE',
       headers: CabecalhoComAutenticacao,
     })
-      .then(r => r.json());
+      .then(r => {
+        r.json();
+        return r;
+      });
   }
 };
 
