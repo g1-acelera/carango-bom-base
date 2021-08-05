@@ -19,26 +19,15 @@ const tableStyles = makeStyles((theme) => ({
   container: {
     width: "calc(100vw - 240px)"
   },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    marginLeft: 0,
-    width: "100%",
-  },
   searchIcon: {
-    width: theme.spacing(7),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    verticalAlign: "middle",
+    position: "relative",
   },
   inputRoot: {
     color: "inherit",
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
+    paddingLeft: theme.spacing(1),
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -79,7 +68,8 @@ export default function Tabela({ columns, data, colunaDeAcoes, service, caminhoD
 
   return (
     <TableContainer className={styles.container}>
-      <SearchIcon/>
+      <div>
+      <SearchIcon className={styles.searchIcon}/>
         <InputBase
           data-testid="filtro-global"
           value={state.globalFilter || ""}
@@ -91,6 +81,7 @@ export default function Tabela({ columns, data, colunaDeAcoes, service, caminhoD
           }}
           inputProps={{ "aria-label": "search" }}
         />
+      </div>
       <Table data-testid="tabela">
         <TableHead>
           {headerGroups.map((headerGroup) => (
