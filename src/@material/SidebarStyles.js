@@ -9,12 +9,11 @@ const SidebarStyles = makeStyles((theme) => ({
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
-            // width: drawerWidth,
             flexShrink: 0,
         },
     },
     appBar: {
-        backgroundColor: 'white',
+        backgroundColor: 'white !important',
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: `calc(drawerWidth + 1rem)`,
