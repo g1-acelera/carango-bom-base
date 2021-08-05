@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useMemo } from "react"
+import React, {useMemo} from "react"
+import AddIcon from '@material-ui/icons/Add';
+import {fabStyles} from '../../@material/Button';
+import {Fab} from '@material-ui/core';
 
 import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import VeiculoService from "../../services/VeiculoService"
 import Tabela from "../../shared/components/Tabela/Tabela"
 import {useHistory} from 'react-router-dom';
-import {fabStyles} from '../../@material/Button';
-import {Fab} from '@material-ui/core';
 import ROTAS from "../../shared/constants/rotas.const";
-import AddIcon from '@material-ui/icons/Add';
-
+import useListarEntidade from "../../shared/hooks/useListarEntidade";
 
 function ListagemVeiculos() {
-  const [veiculos, setVeiculos] = useState([])
+  const {dadosConsultados} = useListarEntidade(VeiculoService.listar);
   const {ehUsuarioLogado} = useAutenticacaoContext();
   const classes = fabStyles();
   const history = useHistory();
@@ -39,17 +39,11 @@ function ListagemVeiculos() {
     []
   )
 
-  useEffect(() => carregarVeiculos(), [])
-
-  function carregarVeiculos() {
-    VeiculoService.listar().then((result) => setVeiculos(result))
-  }
-
   return (
-    <div data-testid="telaListagem" style={{width: "100%"}}>
+    <div data-testid="telaListagem">
         <Tabela 
           columns={colunas} 
-          data={veiculos}
+          data={dadosConsultados}
           colunaDeAcoes={ehUsuarioLogado? true : false}
           service={VeiculoService}
           caminhoDoObjeto="/veiculos"
