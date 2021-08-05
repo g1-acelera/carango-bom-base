@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from "react-router-dom";
+
 import VeiculoService from "../../services/VeiculoService";
 import MarcaService from '../../services/MarcaService';
 import Veiculo from "../../shared/models/Veiculo";
 
 import Formulario from "../../shared/components/Formulario/Formulario";
 import useForm from "../../shared/hooks/useForm";
-
 import useConsultaEntidade from "../../shared/hooks/useConsultaEntidade";
 
 import CampoDeTexto from '../../shared/components/CampoDeTexto/CampoDeTexto';
@@ -14,22 +15,36 @@ import CampoDeSelecao from '../../shared/components/CampoDeSelecao/CampoDeSeleca
 import BotaoDetalhes from "../../shared/components/BotaoDetalhes/BotaoDetalhes";
 import TextField from '@material-ui/core/TextField';
 
+import ROTAS from "../../shared/constants/rotas.const";
+
 function CadastroVeiculo() {
   const {atualizaValor, valores, setValores} = useForm(Veiculo.initialValues());
   const {dadosConsultados} = useConsultaEntidade(VeiculoService.consultar);
-  const [marcas, setMarcas] = useState();
+  const [marcas,
+    setMarcas] = useState();
+
+  const title = useHistory().location.pathname === ROTAS.CADASTRO_VEICULO
+    ? "Cadastro Veículo"
+    : "Alterar Veículo";
 
   useEffect(() => {
-    setValores(dadosConsultados)
-    MarcaService.listar()
-    .then(dados => { 
-      setMarcas(dados)
-    });
+    setValores(dadosConsultados);
+
+    MarcaService
+      .listar()
+      .then(dados => {
+        setMarcas(dados)
+      });
+
+    if (dadosConsultados !== undefined && dadosConsultados !== null) {
+      dadosConsultados.marcaId = dadosConsultados.marca.id;
+    }
   }, [dadosConsultados, setValores]);
 
-
   return (
-    <h1>Cadastrar Veículo
+    <div id="cadastro-veiculo-screen">
+
+      <h1>{title}</h1>
       <Formulario
         cadastroServico={VeiculoService.cadastrar}
         alteraServico={VeiculoService.alterar}
@@ -46,19 +61,19 @@ function CadastroVeiculo() {
           onChange={atualizaValor}/>
 
         <TextField
-          value={valores?.value}
+          value={valores
+          ?.valor}
           onChange={atualizaValor}
           name="valor"
           data-testid="veiculo-valor-text-field"
           id="formatted-numberformat-input"
           InputProps={{
-            inputComponent: CampoDeValor,
-          }}
+          inputComponent: CampoDeValor
+        }}
           variant="outlined"
           label="Valor"
           required={true}
-          fullWidth
-        />
+          fullWidth/>
 
         <CampoDeTexto
           id="veiculo-ano"
@@ -79,10 +94,9 @@ function CadastroVeiculo() {
           onChange={atualizaValor}
           dados={marcas}/>
 
-        <BotaoDetalhes
-            salvarDesabilitado={!Veiculo.ehVeiculoValido(valores)}/>
+        <BotaoDetalhes salvarDesabilitado={!Veiculo.ehVeiculoValido(valores)}/>
       </Formulario>
-    </h1>
+    </div>
   );
 
 }
