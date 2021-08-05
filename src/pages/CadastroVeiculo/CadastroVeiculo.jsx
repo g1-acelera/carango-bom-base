@@ -24,7 +24,7 @@ function CadastroVeiculo() {
     setMarcas] = useState();
 
   const title = useHistory().location.pathname === ROTAS.CADASTRO_VEICULO
-    ? "Cadastro Veículo"
+    ? "Cadastrar Veículo"
     : "Alterar Veículo";
 
   useEffect(() => {
