@@ -55,7 +55,7 @@ function CadastroVeiculo() {
             inputComponent: CampoDeValor,
           }}
           variant="outlined"
-          label="valor"
+          label="Valor"
           required={true}
           fullWidth
         />
