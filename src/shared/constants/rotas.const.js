@@ -7,6 +7,7 @@ const ROTAS = {
     CADASTRO_VEICULO: "/cadastro-veiculo",
     ALTERACAO_VEICULO: "/alteracao-veiculo/:id",
     DASHBOARD: "/dashboard",
+    USUARIOS: "/listagem-usuarios",
     LOGIN: "/login",
     NAO_ENCONTRADO: "**",
 };
