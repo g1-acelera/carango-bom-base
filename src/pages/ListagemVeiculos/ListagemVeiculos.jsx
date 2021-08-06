@@ -50,7 +50,7 @@ function ListagemVeiculos() {
             />
             { 
                 ehUsuarioLogado ?
-                <Fab data-testid="fab-AddMarca" color="primary" aria-label="Adicionar veículo" className={classes.fab}
+                <Fab data-testid="fab-AddVeiculo" color="primary" aria-label="Adicionar veículo" className={classes.fab}
                      onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
                     <AddIcon/>
                 </Fab> : " "
