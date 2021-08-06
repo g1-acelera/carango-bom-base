@@ -13,7 +13,7 @@ class Usuario {
         return validaEmail(valorDoCampo);
     }
 
-    static ehVeiculoValido(valores) {
+    static ehModeloValido(valores) {
         return !this.validacoesEmail(valores?.email) && !validaObrigatoriedade(valores?.email)
             && !validaObrigatoriedade(valores?.senha);
     }

@@ -17,7 +17,7 @@ const CadastroUsuario = () => {
 
             <Formulario
                 cadastroServico={UsuarioService.cadastrar}
-                ehValido={Usuario.ehVeiculoValido(valores)}
+                ehValido={Usuario.ehModeloValido(valores)}
                 valores={valores}>
 
                 <CampoDeTexto
@@ -36,7 +36,7 @@ const CadastroUsuario = () => {
                     required={true}
                     onChange={atualizaValor}/>
 
-                <BotaoDetalhes salvarDesabilitado={!Usuario.ehVeiculoValido(valores)}/>
+                <BotaoDetalhes salvarDesabilitado={!Usuario.ehModeloValido(valores)}/>
             </Formulario>
         </div>
     );
