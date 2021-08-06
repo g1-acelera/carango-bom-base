@@ -10,47 +10,10 @@ import InputBase from "@material-ui/core/InputBase"
 import Typography from "@material-ui/core/Typography"
 import SearchIcon from "@material-ui/icons/Search"
 import TableContainer from "@material-ui/core/TableContainer"
-import {makeStyles} from "@material-ui/core/styles"
 import NumberFormat from "react-number-format"
 
 import ColunaDeAcoes from "./ColunaDeAcoes"
-
-const tableStyles = makeStyles((theme) => ({
-    container: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "2rem"
-    },
-    search: {
-        position: "relative",
-        borderRadius: theme.shape.borderRadius,
-        marginLeft: 0,
-        width: "100%",
-    },
-    searchIcon: {
-        position: "absolute",
-        zIndex: "1",
-        left: "15px"
-    },
-    inputRoot: {
-        width: "100%"
-    },
-    inputInput: {
-        width: "100%",
-        padding: theme.spacing(2, 2, 2, 7),
-        transition: theme.transitions.create("width"),
-        backgroundColor: "white",
-        borderRadius: "20px",
-        border: "1px solid var(--desabilitado)",
-        position: "relative"
-    },
-    campoPesquisa: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative"
-    }
-}))
+import tableStyles from "../../../@material/TableStyles";
 
 export default function Tabela({columns, data, colunaDeAcoes, service, caminhoDoObjeto}) {
     const {
@@ -67,17 +30,21 @@ export default function Tabela({columns, data, colunaDeAcoes, service, caminhoDo
         useSortBy
     )
 
-    const styles = tableStyles()
+    const styles = tableStyles();
 
     function renderCell(cell) {
         const valor = cell.value
         const tipo = cell.column.type
 
-        if (tipo === "currency") return (<NumberFormat value={valor}
-                                                       displayType={'text'}
-                                                       decimalSeparator="."
-                                                       thousandSeparator=","
-                                                       prefix="R$ "/>)
+        if (tipo === "currency") {
+            return <NumberFormat
+                value={valor}
+                displayType={'text'}
+                decimalSeparator="."
+                thousandSeparator=","
+                prefix="R$ "
+            />
+        }
 
         return cell.value
     }
