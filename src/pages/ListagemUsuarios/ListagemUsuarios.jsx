@@ -7,14 +7,12 @@ import AddIcon from "@material-ui/icons/Add";
 import useListarEntidade from "../../shared/hooks/useListarEntidade";
 import UsuarioService from "../../services/UsuarioService";
 import ListagemUsuarioColunasConst from "./ListagemUsuarioColunas.const";
-import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import {fabStyles} from "../../@material/Button";
 import {useHistory} from "react-router-dom";
 
 const ListagemUsuarios = () => {
     const history = useHistory();
     const classes = fabStyles();
-    const {ehUsuarioLogado} = useAutenticacaoContext();
     const {dadosConsultados} = useListarEntidade(UsuarioService.listar);
 
     return (
@@ -22,9 +20,8 @@ const ListagemUsuarios = () => {
             <Tabela
                 columns={ListagemUsuarioColunasConst}
                 data={dadosConsultados}
-                colunaDeAcoes={ehUsuarioLogado}
+                colunaDeAcoes={false}
                 service={VeiculoService}
-                caminhoDoObjeto="/usuarios"
             />
             <Fab
                 data-testid="btn-novo-usuario"
