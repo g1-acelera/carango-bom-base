@@ -1,7 +1,7 @@
 import Marca from "./Marca";
 
 const validacoesNome = (nome) => {
-    return Marca.validacoesNome("")
+    return Marca.validacoesNome(nome);
 }
 
 describe("Marca modelo testes", () => {
