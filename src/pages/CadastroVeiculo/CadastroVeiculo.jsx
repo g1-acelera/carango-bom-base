@@ -24,27 +24,29 @@ function CadastroVeiculo() {
     setMarcas] = useState();
 
   const title = useHistory().location.pathname === ROTAS.CADASTRO_VEICULO
-    ? "Cadastro Veículo"
+    ? "Cadastrar Veículo"
     : "Alterar Veículo";
 
   useEffect(() => {
-    setValores(dadosConsultados);
+    async function loadData() {
+      if (dadosConsultados) {
+        dadosConsultados.marcaId = dadosConsultados.marca.id;
+      }
+      setValores(dadosConsultados);
 
-    MarcaService
-      .listar()
-      .then(dados => {
-        setMarcas(dados)
-      });
-
-    if (dadosConsultados !== undefined && dadosConsultados !== null) {
-      dadosConsultados.marcaId = dadosConsultados.marca.id;
+      await MarcaService
+        .listar()
+        .then(dados => {
+          setMarcas(dados)
+        });
     }
+    loadData()
   }, [dadosConsultados, setValores]);
 
   return (
     <div id="cadastro-veiculo-screen">
 
-      <h1>{title}</h1>
+      <h1 id="cadastro-veiculo-title">{title}</h1>
       <Formulario
         cadastroServico={VeiculoService.cadastrar}
         alteraServico={VeiculoService.alterar}

@@ -13,7 +13,8 @@ import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
 
 export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
     const history = useHistory()
-    const [open, setOpen] = useState(false)
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
+    const [openErroDialog, setOpenErroDialog] = useState(false)
 
     const alterar = (id) => {
         history.push(caminhoDoObjeto + "/" + id)
@@ -21,17 +22,30 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
 
     const excluir = (id) => {
         service.excluir(id)
-            .then(() => {
+            .then((response) => {
+                if(response.ok === false) {
+                    fecharDeleteDialog();
+                    abrirErroDialog();
+                    return;
+                }
                 history.go(0)
             })
     }
 
-    const abrirDialogo = () => {
-        setOpen(true);
+    const abrirDeleteDialog = (abrirDialog) => {
+        setOpenDeleteDialog(true);
       };
     
-    const fecharDialogo = () => {
-        setOpen(false);
+    const fecharDeleteDialog = () => {
+        setOpenDeleteDialog(false);
+    };
+
+    const abrirErroDialog = () => {
+        setOpenErroDialog(true);
+      };
+    
+    const fecharErroDialog = () => {
+        setOpenErroDialog(false);
     };
 
     return (
@@ -49,13 +63,13 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
                 data-testid="botao-excluir"
                 variant="contained"
                 color="secondary"
-                onClick={() => abrirDialogo()}>
+                onClick={() => abrirDeleteDialog()}>
                 <DeleteOutlineOutlined color="error"/>
             </IconButton>
         </TableCell>
         <Dialog
-            open={open}
-            onClose={fecharDialogo}
+            open={openDeleteDialog}
+            onClose={fecharDeleteDialog}
             aria-labelledby="draggable-dialog-title"
         >   
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
@@ -67,11 +81,30 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
             </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Button autoFocus onClick={fecharDialogo} color="primary">
+        <Button autoFocus onClick={fecharDeleteDialog} color="primary">
             Cancelar
         </Button>
         <Button onClick={() => excluir(object_id)} color="primary">
             Excluir
+        </Button>
+        </DialogActions>
+        </Dialog>
+        <Dialog
+            open={openErroDialog}
+            onClose={fecharErroDialog}
+            aria-labelledby="draggable-dialog-title"
+        >   
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+            Erro
+        </DialogTitle>
+        <DialogContent>
+            <DialogContentText>
+                Não é possível deletar esta Marca
+            </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <Button autoFocus onClick={fecharErroDialog} color="primary">
+            Ok
         </Button>
         </DialogActions>
         </Dialog>
