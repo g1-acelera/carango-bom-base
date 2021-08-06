@@ -6,7 +6,7 @@ import ROTAS from "../../shared/constants/rotas.const";
 import AddIcon from "@material-ui/icons/Add";
 import useListarEntidade from "../../shared/hooks/useListarEntidade";
 import UsuarioService from "../../services/UsuarioService";
-import ListagemUsuarioColunasConst from "./ListagemUsuarioColunas.const";
+import ListagemUsuarioColunasConst from "./ListagemUsuarioColunasConst";
 import {fabStyles} from "../../@material/Button";
 import {useHistory} from "react-router-dom";
 
