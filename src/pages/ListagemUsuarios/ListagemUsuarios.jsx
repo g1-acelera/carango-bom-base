@@ -16,7 +16,7 @@ const ListagemUsuarios = () => {
     const {dadosConsultados} = useListarEntidade(UsuarioService.listar);
 
     return (
-        <Box minWidth="50%" maxWidth="100%" position="relative" data-testid="listagem-usuarios">
+        <Box minWidth="50%" maxWidth="100%" data-testid="listagem-usuarios">
             <Tabela
                 columns={ListagemUsuarioColunasConst}
                 data={dadosConsultados}

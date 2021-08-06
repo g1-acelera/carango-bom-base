@@ -11,49 +11,49 @@ import ROTAS from "../../shared/constants/rotas.const";
 import useListarEntidade from "../../shared/hooks/useListarEntidade";
 
 function ListagemVeiculos() {
-  const {dadosConsultados} = useListarEntidade(VeiculoService.listar);
-  const {ehUsuarioLogado} = useAutenticacaoContext();
-  const classes = fabStyles();
-  const history = useHistory();
+    const {dadosConsultados} = useListarEntidade(VeiculoService.listar);
+    const {ehUsuarioLogado} = useAutenticacaoContext();
+    const classes = fabStyles();
+    const history = useHistory();
 
-  const colunas = useMemo(
-    () => [
-      {
-        header: "Modelo",
-        accessor: "nome",
-      },
-      {
-        header: "Marca",
-        accessor: "marca.nome",
-      },
-      {
-        header: "Ano",
-        accessor: "ano",
-      },
-      {
-        header: "Valor",
-        accessor: "valor",
-        type: "currency"
-      },
-    ],
-    []
-  )
+    const colunas = useMemo(
+        () => [
+            {
+                header: "Modelo",
+                accessor: "nome",
+            },
+            {
+                header: "Marca",
+                accessor: "marca.nome",
+            },
+            {
+                header: "Ano",
+                accessor: "ano",
+            },
+            {
+                header: "Valor",
+                accessor: "valor",
+                type: "currency"
+            },
+        ],
+        []
+    )
 
-  return (
-    <Box position="relative" data-testid="telaListagem">
-        <Tabela 
-          columns={colunas} 
-          data={dadosConsultados}
-          colunaDeAcoes={ehUsuarioLogado}
-          service={VeiculoService}
-          caminhoDoObjeto="/alteracao-veiculo"
-        />
-        <Fab data-testid="fab-AddMarca" color="primary" aria-label="add" className={classes.fab}
-        onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
-          <AddIcon/>
-        </Fab>
-    </Box>
-  )
+    return (
+        <Box data-testid="telaListagem">
+            <Tabela
+                columns={colunas}
+                data={dadosConsultados}
+                colunaDeAcoes={ehUsuarioLogado}
+                service={VeiculoService}
+                caminhoDoObjeto="/alteracao-veiculo"
+            />
+            <Fab data-testid="fab-AddMarca" color="primary" aria-label="Adicionar veículo" className={classes.fab}
+                 onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
+                <AddIcon/>
+            </Fab>
+        </Box>
+    )
 }
 
 export default ListagemVeiculos;
