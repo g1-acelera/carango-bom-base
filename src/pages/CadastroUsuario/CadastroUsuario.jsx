@@ -10,7 +10,7 @@ const CadastroUsuario = () => {
     const {atualizaValor, valores} = useForm(Usuario.initialValues());
 
     return (
-        <div id="cadastro-usuario">
+        <div data-testid="cadastro-usuario">
             <h1>
                 Cadastro Usuário
             </h1>
