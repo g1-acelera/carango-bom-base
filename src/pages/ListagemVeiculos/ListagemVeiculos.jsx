@@ -48,10 +48,13 @@ function ListagemVeiculos() {
                 service={VeiculoService}
                 caminhoDoObjeto="/alteracao-veiculo"
             />
-            <Fab data-testid="fab-AddMarca" color="primary" aria-label="Adicionar veículo" className={classes.fab}
-                 onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
-                <AddIcon/>
-            </Fab>
+            { 
+                ehUsuarioLogado ?
+                <Fab data-testid="fab-AddMarca" color="primary" aria-label="Adicionar veículo" className={classes.fab}
+                     onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
+                    <AddIcon/>
+                </Fab> : " "
+            }
         </Box>
     )
 }
