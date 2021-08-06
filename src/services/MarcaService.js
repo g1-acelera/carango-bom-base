@@ -30,11 +30,7 @@ const MarcaService = {
     return fetch((`${API}/marcas/${id}`), {
       method: 'DELETE',
       headers: CabecalhoComAutenticacao,
-    })
-      .then(r => {
-        r.json();
-        return r;
-      });
+    }).then(r => r.json())
   }
 };
 
