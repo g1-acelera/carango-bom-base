@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test:watch": "react-scripts test --watchAll=true",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "test:ci": "react-scripts test -w 1",
+    "test:ci": "react-scripts test --maxWorkers=1",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
