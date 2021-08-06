@@ -15,22 +15,11 @@ const UsuarioService = {
     },
 
     listar() {
-        return Promise.resolve(
-            [
-                {
-                    email: "amanda@gmail.com"
-                }
-            ]
-        )
-        return fetch(`${API}/usuarios`).then(response => response.json());
-    },
-
-    excluir(id) {
-        return fetch((`${API}/usuarios/${id}`), {
-            method: 'DELETE',
+        return fetch(`${API}/usuarios`, {
+            method: 'GET',
             headers: CabecalhoComAutenticacao,
         }).then(response => response.json());
-    }
+    },
 };
 
 export default UsuarioService;
