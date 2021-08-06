@@ -1,5 +1,13 @@
 import Veiculo from "./Veiculo";
 
+const validacoesNome = (nome) => {
+    return Veiculo.validacoesNome(nome);
+}
+
+const validacoesValor = (valor) => {
+    return Veiculo.validacaoValor(valor);
+}
+
 describe("Veículo modelo testes", () => {
     it("Deve possuir os valores iniciais", () => {
        const esperado = {
@@ -12,12 +20,12 @@ describe("Veículo modelo testes", () => {
     });
 
     it("Deve retornar a validação de obrigatoriedade para o nome", () => {
-        const validacao = Veiculo.validacoesNome("");
+        const validacao = validacoesNome("");
         expect(validacao).toBe("Campo obrigatório");
     });
 
     it("Não deve retornar a validação de obrigatoriedade quando o nome for preenchido", () => {
-        const validacao = Veiculo.validacoesNome("Uni");
+        const validacao = validacoesNome("Uni");
         expect(validacao).toBe("");
     });
 
@@ -27,17 +35,17 @@ describe("Veículo modelo testes", () => {
     });
 
     it("Não deve retornar a validação de tamanho mínimo quando o  nome for preenchido", () => {
-        const validacao = Veiculo.validacoesNome("Uno");
+        const validacao = validacoesNome("Uno");
         expect(validacao).toBe("");
     });
 
     it("Deve retornar a validação de obrigatoriedade para o valor", () => {
-        const validacao = Veiculo.validacaoValor("");
+        const validacao = validacoesValor("");
         expect(validacao).toBe("Campo obrigatório");
     });
 
     it("Não deve retornar a validação de obrigatoriedade quando o valor for preenchido", () => {
-        const validacao = Veiculo.validacaoValor("Uno");
+        const validacao = validacoesValor("123");
         expect(validacao).toBe("");
     });
 });
