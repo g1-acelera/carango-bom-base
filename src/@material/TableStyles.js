@@ -4,7 +4,10 @@ const tableStyles = makeStyles((theme) => ({
     container: {
         display: "flex",
         flexDirection: "column",
-        gap: "2rem"
+        gap: "2rem",
+        [theme.breakpoints.down('md')]: {
+            width: "80vw"
+        },
     },
     search: {
         position: "relative",

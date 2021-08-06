@@ -6,8 +6,8 @@ import {blue} from "@material-ui/core/colors";
 export const fabStyles = makeStyles(() => ({
     fab: {
         position: 'absolute',
-        bottom: '100px',
-        right: '100px',
+        top: '100%',
+        right: '0%',
         boxShadow: "0px 4px 14px 0px rgb(173, 20, 87, .4)",
         '&:hover': {
             boxShadow: 'none',

@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import {fabStyles} from '../../@material/Button';
 import MarcaService from '../../services/MarcaService';
-import {Fab} from '@material-ui/core';
+import {Box, Fab} from '@material-ui/core';
 
 import ROTAS from "../../shared/constants/rotas.const"
 import Tabela from "../../shared/components/Tabela/Tabela"
@@ -27,7 +27,7 @@ function ListagemMarcas() {
     )
 
     return (
-        <div data-testid="telaMarcaListagem">
+        <Box data-testid="telaMarcaListagem" position="relative">
             <Tabela
                 columns={colunas}
                 data={dadosConsultados}
@@ -39,7 +39,7 @@ function ListagemMarcas() {
                  onClick={() => history.push(ROTAS.CADASTRO_MARCA)}>
                 <AddIcon/>
             </Fab>
-        </div>
+        </Box>
     );
 }
 

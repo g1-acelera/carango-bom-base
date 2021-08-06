@@ -1,7 +1,7 @@
 import React, {useMemo} from "react"
 import AddIcon from '@material-ui/icons/Add';
 import {fabStyles} from '../../@material/Button';
-import {Fab} from '@material-ui/core';
+import {Box, Fab} from '@material-ui/core';
 
 import {useAutenticacaoContext} from "../../shared/context/autenticacao.context";
 import VeiculoService from "../../services/VeiculoService"
@@ -40,7 +40,7 @@ function ListagemVeiculos() {
   )
 
   return (
-    <div data-testid="telaListagem">
+    <Box position="relative" data-testid="telaListagem">
         <Tabela 
           columns={colunas} 
           data={dadosConsultados}
@@ -52,7 +52,7 @@ function ListagemVeiculos() {
         onClick={() => history.push(ROTAS.CADASTRO_VEICULO)}>
           <AddIcon/>
         </Fab>
-    </div>
+    </Box>
   )
 }
 
