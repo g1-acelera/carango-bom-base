@@ -44,7 +44,7 @@ function ListagemVeiculos() {
         <Tabela 
           columns={colunas} 
           data={dadosConsultados}
-          colunaDeAcoes={ehUsuarioLogado? true : false}
+          colunaDeAcoes={ehUsuarioLogado}
           service={VeiculoService}
           caminhoDoObjeto="/veiculos"
         />

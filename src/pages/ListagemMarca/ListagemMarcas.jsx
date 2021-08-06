@@ -31,7 +31,7 @@ function ListagemMarcas() {
             <Tabela
                 columns={colunas}
                 data={dadosConsultados}
-                colunaDeAcoes={ehUsuarioLogado? true : false}
+                colunaDeAcoes={ehUsuarioLogado}
                 service={MarcaService}
                 caminhoDoObjeto="/marcas"
             />
