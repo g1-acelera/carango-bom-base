@@ -12,26 +12,25 @@ const BotaoDetalhes = ({salvarDesabilitado}) => {
     }
 
     return (
-        <div className='buttonContainer' style={{ display: "flex", justifyContent: "space-between"}}>
+        <div className='buttonContainer' style={{display: "flex", justifyContent: "flex-end", marginTop: '20px', gap: "1rem"}}>
+            <BotaoCancelar
+                data-testid="btnCancelar"
+                variant="contained"
+                color="secondary"
+                onClick={cancelar}
+            >
+                Cancelar
+            </BotaoCancelar>
+
             <BotaoPrincipal
                 data-testid="btnSalvar"
                 variant="contained"
                 color="primary"
                 type="submit"
                 disabled={salvarDesabilitado}
-                style={{ marginTop: '20px'}}
             >
                 {id ? 'Alterar' : 'Cadastrar'}
             </BotaoPrincipal>
-
-            <BotaoCancelar
-                data-testid="btnCancelar"
-                variant="contained"
-                color="secondary"
-                onClick={cancelar}
-                style={{ marginTop: '20px'}}>
-                Cancelar
-            </BotaoCancelar>
         </div>
     );
 }

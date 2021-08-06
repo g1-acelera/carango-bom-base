@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import {Snackbar, Typography} from "@material-ui/core";
+import {IconButton, Snackbar, Typography} from "@material-ui/core";
+import {ArrowBackOutlined} from '@material-ui/icons';
 import {useHistory} from "react-router-dom";
 
 import estilos from "./Login.module.css";
@@ -32,7 +33,17 @@ const Login = () => {
         <>
             <div className={estilos.login__container}>
                 <article className={estilos.login__card}>
-                    <Typography className={estilos.login__titulo} variant="h5" data-testid="titulo">Entrar</Typography>
+                    <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1em"
+                    }}>
+                        <IconButton onClick={() => history.push(ROTAS.DASHBOARD)}>
+                            <ArrowBackOutlined/>
+                        </IconButton>
+                        <Typography className={estilos.login__titulo} variant="h5"
+                                    data-testid="titulo">Entrar</Typography>
+                    </div>
                     <form
                         className={estilos.login__formulario}
                         onSubmit={login}

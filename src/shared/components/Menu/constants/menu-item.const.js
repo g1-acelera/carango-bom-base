@@ -1,4 +1,4 @@
-import {DashboardOutlined, CommuteOutlined, CopyrightOutlined} from '@material-ui/icons';
+import {DashboardOutlined, CommuteOutlined, CopyrightOutlined, PersonOutlined} from '@material-ui/icons';
 import ROTAS from "../../../constants/rotas.const";
 
 const MENU_ITEM = [
@@ -22,6 +22,13 @@ const MENU_ITEM = [
         url: ROTAS.MARCAS,
         autenticadoParaVisualizar: true,
         testeId: "item-marcas"
+    },
+    {
+        nome: "Usuários",
+        icone: <PersonOutlined/>,
+        url: ROTAS.USUARIOS,
+        autenticadoParaVisualizar: true,
+        testeId: "item-usuarios"
     },
 ];
 

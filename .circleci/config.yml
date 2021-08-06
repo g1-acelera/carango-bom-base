@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm run test:coverage
+          command: npm run test:ci
 
       - store_artifacts:
           path: coverage
