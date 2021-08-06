@@ -10,7 +10,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import {IconButton, Button} from "@material-ui/core"
 import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
 
-
 export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
     const history = useHistory()
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
@@ -59,7 +58,6 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
                 <EditOutlined color="secondary"/>
             </IconButton>
             <IconButton
-                id="1-botao-excluir"
                 data-testid="botao-excluir"
                 variant="contained"
                 color="secondary"
@@ -68,45 +66,46 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
             </IconButton>
         </TableCell>
         <Dialog
+            data-testid="dialogo-excluir"
             open={openDeleteDialog}
             onClose={fecharDeleteDialog}
             aria-labelledby="draggable-dialog-title"
         >   
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-            Cuidado
-        </DialogTitle>
-        <DialogContent>
-            <DialogContentText>
-                Tem certeza que quer excluir este registro?
-            </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-        <Button autoFocus onClick={fecharDeleteDialog} color="primary">
-            Cancelar
-        </Button>
-        <Button onClick={() => excluir(object_id)} color="primary">
-            Excluir
-        </Button>
-        </DialogActions>
+            <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                Cuidado
+            </DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Tem certeza que quer excluir este registro?
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button autoFocus onClick={fecharDeleteDialog} color="primary">
+                    Cancelar
+                </Button>
+                <Button data-testid="botao-confirmar" onClick={() => excluir(object_id)} color="primary">
+                    Excluir
+                </Button>
+            </DialogActions>
         </Dialog>
         <Dialog
             open={openErroDialog}
             onClose={fecharErroDialog}
             aria-labelledby="draggable-dialog-title"
         >   
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-            Erro
-        </DialogTitle>
-        <DialogContent>
-            <DialogContentText>
-                Não é possível deletar esta Marca
-            </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-        <Button autoFocus onClick={fecharErroDialog} color="primary">
-            Ok
-        </Button>
-        </DialogActions>
+            <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                Erro
+            </DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Não é possível deletar esta Marca
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button autoFocus onClick={fecharErroDialog} color="primary">
+                    Ok
+                </Button>
+            </DialogActions>
         </Dialog>
         </>
     )
