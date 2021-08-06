@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import {IconButton, Button} from "@material-ui/core"
+import {Button, IconButton} from "@material-ui/core"
 import {DeleteOutlineOutlined, EditOutlined} from '@material-ui/icons'
 
 export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
@@ -22,7 +22,7 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
     const excluir = (id) => {
         service.excluir(id)
             .then((response) => {
-                if(response.ok === false) {
+                if (response.ok === false) {
                     fecharDeleteDialog();
                     abrirErroDialog();
                     return;
@@ -33,16 +33,16 @@ export default function ColunaDeAcoes({object_id, service, caminhoDoObjeto}) {
 
     const abrirDeleteDialog = (abrirDialog) => {
         setOpenDeleteDialog(true);
-      };
-    
+    };
+
     const fecharDeleteDialog = () => {
         setOpenDeleteDialog(false);
     };
 
     const abrirErroDialog = () => {
         setOpenErroDialog(true);
-      };
-    
+    };
+
     const fecharErroDialog = () => {
         setOpenErroDialog(false);
     };

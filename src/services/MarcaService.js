@@ -7,7 +7,7 @@ const MarcaService = {
       method: 'POST',
       body: JSON.stringify(marca),
       headers: CabecalhoComAutenticacao,
-    }).then(r => r.json());
+    }).then(response => response.json());
   },
 
   alterar(marca) {
@@ -15,22 +15,22 @@ const MarcaService = {
       method: 'PUT',
       body: JSON.stringify(marca),
       headers: CabecalhoComAutenticacao,
-    }).then(r => r.json());
+    }).then(response => response.json());
   },
 
   consultar(id) {
-    return fetch(`${API}/marcas/${id}`).then(r => r.json());
+    return fetch(`${API}/marcas/${id}`).then(response => response.json());
   },
 
   listar() {
-    return fetch(`${API}/marcas`).then(r => r.json());
+    return fetch(`${API}/marcas`).then(response => response.json());
   },
 
   excluir(id) {
     return fetch((`${API}/marcas/${id}`), {
       method: 'DELETE',
       headers: CabecalhoComAutenticacao,
-    }).then(r => r.json())
+    }).then(response => response.json());
   }
 };
 
