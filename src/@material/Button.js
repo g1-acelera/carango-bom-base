@@ -42,7 +42,9 @@ export const BotaoCancelar = withStyles({
         backgroundColor: 'transparent',
         borderRadius: '20px',
         color: 'red',
+        boxShadow: "none",
         '&:hover': {
+            boxShadow: "none",
             backgroundColor: 'rgba(244, 67, 54, 0.05)',
             border: 'none',
         },
